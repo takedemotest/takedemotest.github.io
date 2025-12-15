@@ -1,59 +1,104 @@
-# Project
+# Project Structure Overview
+src/
+ └── app/
+     ├── common_component/
+     ├── core_services/
+     │   └── icon.service.ts
+     ├── pages/
+     │   └── about/
+     │       ├── about.component.html
+     │       ├── about.component.scss
+     │       ├── about.component.spec.ts
+     │       └── about.component.ts
+     ├── app.component.html
+     ├── app.component.scss
+     ├── app.component.spec.ts
+     ├── app.component.ts
+     ├── app.config.ts
+     ├── app.routes.ts
+ ├── assets/
+ │   ├── images/
+ │   └── svg-icons/
+ │       ├── check.svg
+ │       ├── facebook.svg
+ │       ├── instagram.svg
+ │       ├── linkedin.svg
+ │       └── x.svg
+ ├── index.html
+ └── main.ts
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.0.
+ # Common Components (common_component/)
 
-## Development server
+        1. Contains reusable UI components.
 
-To start a local development server, run:
+        2. Designed to be shared across multiple pages and features.
 
-```bash
-ng serve
-```
+        3. Helps maintain consistency and reduce duplication.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+ # Core Services (core_services/)
 
-## Code scaffolding
+        icon.service.ts
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+            Centralized service to manage SVG icons.
 
-```bash
-ng generate component component-name
-```
+            Loads and registers SVG icons from assets/svg-icons.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+            Promotes reusability and performance optimization.
 
-```bash
-ng generate --help
-```
+        Use Case:
 
-## Building
+        Injected wherever icons are required (e.g., buttons, headers).
 
-To build the project run:
+# Pages Module (pages/)
 
-```bash
-ng build
-```
+            About Page (pages/about/)
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+            Feature-specific folder structure.
 
-## Running unit tests
+            Contains:
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+                    about.component.ts – Component logic
 
-```bash
-ng test
-```
+                    about.component.html – UI template
 
-## Running end-to-end tests
+                    about.component.scss – Styling
 
-For end-to-end (e2e) testing, run:
+                    about.component.spec.ts – Unit tests
 
-```bash
-ng e2e
-```
+            This pattern supports lazy loading and feature isolation.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+# Root Application Files
+            app.component.*
 
-## Additional Resources
+            Root component of the application.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+            Acts as the main layout/container.
+
+            app.routes.ts
+
+            Defines application routes.
+
+            Enables navigation between pages like /about.
+
+            app.config.ts
+
+            Centralized application-level configuration.
+
+# Assets Management (assets/)
+            SVG Icons (assets/svg-icons/)
+
+            Stores scalable vector icons.
+
+            Icons such as Facebook, Instagram, LinkedIn, etc.
+
+            Used via IconService for consistency and performance.
+
+            Images (assets/images/)
+
+            Reserved for static image assets.
+
+# Bootstrap Files
+
+            main.ts – Application entry point.
+
+            index.html – Root HTML file where Angular mounts.
