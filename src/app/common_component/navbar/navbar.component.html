@@ -1,0 +1,80 @@
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
+  <div class="container-fluid">
+
+    <!-- SVG Logo -->
+    <a class="navbar-brand d-flex align-items-center" routerLink="/">
+      <span>
+         <img class="spiral" src="assets/images/logo.png" alt="unofin">   
+      </span>
+    </a>
+
+    <!-- Mobile toggle -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto">
+
+        <li class="nav-item">
+          <a
+            routerLink="/ai-banking"
+            routerLinkActive="active"
+            class="nav-link"
+          >
+            AI Banking
+          </a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
+            Payments
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a routerLink="/payments/online" routerLinkActive="active" class="dropdown-item">
+                Online Payments
+              </a>
+            </li>
+            <li>
+              <a routerLink="/payments/cards" routerLinkActive="active" class="dropdown-item">
+                Cards
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
+            Payouts
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a routerLink="/payouts/bank" class="dropdown-item">Bank Transfer</a>
+            </li>
+            <li>
+              <a routerLink="/payouts/wallet" class="dropdown-item">Wallet</a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a routerLink="/support" routerLinkActive="active" class="nav-link">
+            Support
+          </a>
+        </li>
+      </ul>
+
+      <!-- Animated CTA -->
+      <button class="btn btn-gradient cta-animate">
+        START BUILDING →
+      </button>
+    </div>
+  </div>
+</nav>

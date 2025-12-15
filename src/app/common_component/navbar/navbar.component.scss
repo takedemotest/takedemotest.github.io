@@ -1,0 +1,67 @@
+.navbar-custom {
+  background: linear-gradient(90deg, #0b0b0f, #1a0f2e);
+  padding: 14px 32px;
+  backdrop-filter: blur(8px);
+}
+
+.logo {
+  height: 32px;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 22px;
+  color: #fff;
+
+  .brand-accent {
+    color: #7c4dff;
+  }
+}
+
+.nav-link {
+  color: #cfcfd6 !important;
+  margin: 0 14px;
+  font-weight: 500;
+  position: relative;
+
+  &.active {
+    color: #ffffff !important;
+  }
+
+  &:hover {
+    color: #ffffff !important;
+  }
+}
+
+.dropdown-menu {
+  background: #16161d;
+  border-radius: 10px;
+
+  .dropdown-item {
+    color: #dcdce3;
+
+    &:hover {
+      background: #7c4dff;
+      color: #fff;
+    }
+  }
+}
+
+.btn-gradient {
+  background: linear-gradient(135deg, #7c4dff, #b388ff);
+  color: #fff;
+  border-radius: 30px;
+  padding: 10px 24px;
+  font-weight: 600;
+  border: none;
+}
+
+/* CTA Animation */
+.cta-animate {
+  transition: all 0.3s ease;
+}
+
+.cta-animate:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 10px 30px rgba(124, 77, 255, 0.5);
+}

@@ -1,0 +1,66 @@
+<footer class="footer">
+  <div class="footer-top"></div>
+
+  <div class="container footer-content">
+
+    <!-- Brand -->
+    <div class="footer-brand">
+       <span>
+         <img class="spiral" src="assets/images/logo.png" alt="unofin">   
+      </span>
+
+      <p>
+        Experience the new age of payments with UzOFin and explore new growth
+        opportunities to reach greater heights.
+      </p>
+    </div>
+
+    <!-- Products -->
+    <div class="footer-links">
+      <h6>PRODUCTS</h6>
+      <a routerLink="#">AI Banking</a>
+      <a routerLink="#">Payment</a>
+      <a routerLink="#">Payout</a>
+      <a routerLink="#">Merchant Onboarding</a>
+      <a routerLink="#">FRM</a>
+    </div>
+
+    <!-- Company -->
+    <div class="footer-links">
+      <h6>COMPANY</h6>
+      <a routerLink="#">About Us</a>
+      <a routerLink="#">Help Center</a>
+      <a routerLink="#">Contact</a>
+    </div>
+
+    <!-- Legal -->
+    <div class="footer-links">
+      <h6>LEGAL</h6>
+      <a routerLink="#">Cookie Policy</a>
+      <a routerLink="#">Privacy Policy</a>
+      <a routerLink="#">Terms of Service</a>
+    </div>
+
+    <!-- Social -->
+    <div class="footer-social">
+      <h6>SOCIAL</h6>
+
+      <ul class="social-links">
+        <li *ngFor="let item of socialLinks; let i = index">
+          <a [href]="item.url" [attr.aria-label]="item.icon">
+            <mat-icon [svgIcon]="item.icon.toLowerCase()"></mat-icon>
+            <span>/ uzofin</span>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="footer-bottom">
+    <span>Copyright © 2025 UzOFin. All rights reserved</span>
+    <span>India (EN)</span>
+  </div>
+</footer>
