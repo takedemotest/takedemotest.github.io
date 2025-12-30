@@ -16,9 +16,13 @@ export class AuthEffects {
       ofType(LOGIN),
       switchMap(action =>
         this.api.login(action.email, action.password).pipe(
-          map(user =>
-            LOGIN_SUCCESS({ user })
-          ),
+         map((response: any) => {
+          // ✅ STORE TOKEN
+          localStorage.setItem('token', response.token);
+
+          // ✅ DISPATCH SUCCESS
+          return LOGIN_SUCCESS({ user: response.user });
+        }),
           catchError(error =>
             of(LOGIN_FAILURE({ error }))
           )
@@ -32,8 +36,7 @@ export class AuthEffects {
         ofType(LOGIN_SUCCESS),
         tap(() => {
         console.log('Login successful, navigating to dashboard...');
-        this.router.navigate(['/dashboard'], 
-        { skipLocationChange: true });
+        this.router.navigate(['/dashboard']);
         })
       ),
     { dispatch: false }

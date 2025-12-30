@@ -20,4 +20,8 @@ export class ApiService {
 //     );
 //   }
 
+async fechtData(path:string){
+    const response = await fetch("https://jsonplaceholder.typicode.com/users")
+
+}
 }
