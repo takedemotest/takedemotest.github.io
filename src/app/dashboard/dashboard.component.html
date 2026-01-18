@@ -16,6 +16,9 @@
 <li class="nav-item">
 <a class="nav-link text-white" href="#">Reports</a>
 </li>
+<li class="nav-item">
+<a class="nav-link text-white" (click)="logout()" href="#">logout</a>
+</li>
 </ul>
 </div>
 </nav>
@@ -32,36 +35,9 @@
 
 
 <!-- Cards -->
-<div class="row">
-<div class="col-md-4">
-<div class="card text-white bg-primary mb-3">
-<div class="card-body">
-<h5 class="card-title">Users</h5>
-<p class="card-text fs-3">120</p>
-</div>
-</div>
-</div>
-<div class="col-md-4">
-<div class="card text-white bg-success mb-3">
-<div class="card-body">
-<h5 class="card-title">Sales</h5>
-<p class="card-text fs-3">₹45,000</p>
-</div>
-</div>
-</div>
-<div class="col-md-4">
-<div class="card text-white bg-warning mb-3">
-<div class="card-body">
-<h5 class="card-title">Orders</h5>
-<p class="card-text fs-3">38</p>
-</div>
-</div>
-</div>
-</div>
+<app-cards [cardTitle] = 'titleName'>
+    
+</app-cards>
 
 
 <!-- Table -->
-<div class="card mt-4">
-<div class="card-header">Recent Users</div>
-<div class="card-body">
-</div>

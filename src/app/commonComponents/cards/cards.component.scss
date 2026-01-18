@@ -1,0 +1,23 @@
+.card-container-flex {
+  display: flex;
+  flex-wrap: wrap; /* Cards wrap to new lines */
+  gap: 20px; /* Space between cards */
+  justify-content: center; /* Center cards horizontally */
+}
+
+.card{
+     border:1px solid #ccc;
+  border-radius:4px;
+  background:#fff;
+  &_header, &_footer{
+        background:#ccc;
+  }
+}
+
+.card-flex {
+  flex: 1 1 300px; /* Grows, shrinks, basis 300px */
+  /* Inner alignment for content */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Pushes footer/button to bottom */
+}

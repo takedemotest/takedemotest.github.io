@@ -1,12 +1,35 @@
 import { Routes } from '@angular/router';
-import { AuthGuard } from './auth/auth-guard.guard';
+import { AuthGuard } from './global/auth-guard.guard';
 
 export const routes: Routes = [
      {
     path: 'auth',
     loadComponent: () =>
-      import('./auth/auth-form/auth-form.component')
-        .then(c => c.AuthFormComponent)
+      import('./global/auth-form/auth-layout.component')
+        .then(c => c.AuthLayoutComponent),
+     children: [
+      {
+        path: 'login',
+        loadComponent: () =>
+          import('./global/auth-form/auth-form.component')
+            .then(c => c.AuthFormComponent),
+        data: { type: 'login' }
+      },
+      {
+        path: 'register',
+        loadComponent: () =>
+          import('./global/auth-form/auth-form.component')
+            .then(c => c.AuthFormComponent),
+        data: { type: 'register' }
+      },
+      {
+        path: 'reset',
+        loadComponent: () =>
+          import('./global/auth-form/auth-form.component')
+            .then(c => c.AuthFormComponent),
+        data: { type: 'reset' }
+      }
+    ]
   },
   {
     path: 'dashboard',
@@ -15,6 +38,6 @@ export const routes: Routes = [
         .then(c => c.DashboardComponent),
         canActivate: [AuthGuard]
   },
-  { path: '', redirectTo: 'auth', pathMatch: 'full' },
-  { path: '**', redirectTo: 'auth' }
+  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+  { path: '**', redirectTo: 'auth/login' }
 ];
