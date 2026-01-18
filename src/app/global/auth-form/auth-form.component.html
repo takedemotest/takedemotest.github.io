@@ -1,0 +1,64 @@
+<div class="container vh-100 d-flex justify-content-center align-items-center">
+  <div class="card shadow p-4" style="width: 400px;">
+    <div class="auth-container">
+      <!-- TITLE -->
+      <h2 class="title">
+        {{ formConfig.title }}
+      </h2>
+      <!-- FORM -->
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <!-- DYNAMIC FIELDS -->
+        <div *ngFor="let field of formConfig.fields" class="form-group">
+          <label>{{ field.label }}</label>
+          <input [type]="field.type" [formControlName]="field.name" class="form-control" />
+          <small class="error"
+  *ngIf="form.get(field.name)?.touched &&
+         form.get(field.name)?.invalid">
+
+  <span *ngIf="form.get(field.name)?.errors?.['required']">
+    {{ field.label }} is required
+  </span>
+
+  <span *ngIf="form.get(field.name)?.errors?.['emailInvalid']">
+    Invalid email format
+  </span>
+
+  <span *ngIf="form.get(field.name)?.errors?.['hasLen']">
+    Password should be 6 character.
+  </span>
+  <span *ngIf="form.get(field.name)?.errors?.['hasUpperCase']">
+    Password too hasUpperCase
+  </span>
+
+  <span *ngIf="form.get(field.name)?.errors?.['notMatching']">
+    Passwords do not match
+  </span>
+</small>
+        </div>
+        <!-- SUBMIT BUTTON -->
+        <button type="submit" [disabled]="form.invalid || loading" class="btn mt-2">
+          {{ formConfig.actionText }}
+        </button>
+        <!-- LOADING -->
+        <p *ngIf="loading">Processing...</p>
+        <!-- ERROR -->
+        <p class="error" *ngIf="error">
+          {{ error }}
+        </p>
+      </form>
+      <!-- LINKS -->
+      <div class="links mt-1">
+        <a *ngIf="authType === 'login'" routerLink="/auth/register">
+          Create account
+        </a>
+        <a *ngIf="authType === 'login'" routerLink="/auth/reset">
+          Forgot password?
+        </a>
+        <a *ngIf="authType !== 'login'" routerLink="/auth/login">
+          Back to login
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<img src="../../../assets/krishito.jpg" alt="flash Screen" class="flash-screen">

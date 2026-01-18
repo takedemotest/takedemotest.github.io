@@ -6,3 +6,9 @@
     height: 100vh;
     z-index: -1;
 }
+.auth-container{
+    .links{
+        display: flex;
+        justify-content: space-between;
+    }
+}
