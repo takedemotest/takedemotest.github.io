@@ -1,0 +1,9 @@
+<form (submit)="addItmes(itemTextEl.value, $event)">
+    <textarea class="form-control" rows="2" #itemTextEl placeholder="Enter your notes here..." name="notes"
+        (input)="onInput(itemTextEl.value)"></textarea>
+    <button type="submit" [disabled]="IsDisabled" class="btn btn btn-primary mt-2">Save Content</button>
+</form>
+<span class="selected-item"> {{seclectedItems()}}/{{entriesArray().length}}</span>
+<div class="entry-book">
+    <app-entry-book-items [entryArray]="entryItem" *ngFor="let entryItem of entriesArray()"></app-entry-book-items>
+</div>

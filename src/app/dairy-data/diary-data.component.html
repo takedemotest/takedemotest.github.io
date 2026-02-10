@@ -1,0 +1,79 @@
+  <table class="table table-hover border">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Cow Name</th>
+        <th>Milk (L)</th>
+        <th>Last Fill</th>
+      </tr>
+    </thead>
+    <tbody>
+        @for(cow of cowInfoData(); track cow.id){
+            <tr>
+        <td>{{ cow.id }}</td>
+          <td>{{ cow.cowName }}</td>
+          <td>{{ cow.milk }}</td>
+          <td>{{ cow.lastFill }}</td>
+            </tr>
+        }
+        <tr>
+            <td colspan="4">
+                <button type="submit" class="btn btn btn-primary mt-2" (click)="openModal()">Add New Cow</button>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+<div class="modal fade" id="diaryModal" tabindex="-1" #diaryModal>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"> Details</h5>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <form class="cow-form" [formGroup]="cowForm" (ngSubmit)="onSubmitDairyEntry()">
+            <div class="popup">
+    <fieldset>
+        <legend>Cow Identification</legend>
+        
+        <div class="form-group">
+            <label for="cow-name">Cow Name</label>
+            <input type="text" id="cow-name" placeholder="e.g. Bessie" class="form-control" formControlName="cowName">
+        </div>
+        
+        <div class="form-group">
+            <label for="last-milk">Last Milk</label>
+            <input type="number" id="last-milk" placeholder="Current status" class="form-control" formControlName="milk">
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Cow Health History</legend>
+        
+        <div class="form-group">
+            <label for="filling-date">Last Filling Date</label>
+            <input type="date" id="filling-date" name="last_filling" class="form-control" formControlName="lastFill">
+        </div>
+
+        <div class="form-group">
+            <label for="checkup-date">Last Health Checkup</label>
+            <input type="date" id="checkup-date" name="last_checkup" class="form-control" formControlName="sickDate">
+        </div>
+
+        <div class="form-group">
+            <label for="disease">Known Diseases</label>
+            <input type="text" id="disease" name="disease" placeholder="Specify any conditions" class="form-control" formControlName="healthHistory">
+        </div>
+    </fieldset>
+</div>
+    <div class="btn-container">
+         <button type="submit" class="reset-btn">Reset</button>
+         <button type="submit" class="submit-btn">Save</button>
+    </div>
+</form>
+      </div>
+    </div>
+  </div>
+</div>
+

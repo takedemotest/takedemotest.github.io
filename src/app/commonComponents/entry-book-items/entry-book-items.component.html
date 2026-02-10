@@ -1,0 +1,6 @@
+<div class="grid-container" [ngClass]="{'disable':entryArray.done}">
+  <label class="grid-item-box">
+     <span class="label-text">{{entryArray.name}}</span>
+  </label>
+    <input type="checkbox" [checked]="entryArray.done" class="modern-checkbox">
+</div>

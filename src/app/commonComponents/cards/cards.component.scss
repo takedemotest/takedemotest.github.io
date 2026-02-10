@@ -1,16 +1,9 @@
-.card-container-flex {
-  display: flex;
-  flex-wrap: wrap; /* Cards wrap to new lines */
-  gap: 20px; /* Space between cards */
-  justify-content: center; /* Center cards horizontally */
-}
-
 .card{
-     border:1px solid #ccc;
-  border-radius:4px;
-  background:#fff;
-  &_header, &_footer{
-        background:#ccc;
+    border:1px solid #ccc;
+    border-radius:4px;
+    background:#fff;
+    &_header, &_footer, &_body{
+          padding:10px;
   }
 }
 

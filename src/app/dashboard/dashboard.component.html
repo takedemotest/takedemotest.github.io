@@ -1,43 +1,132 @@
+<header>
+    <div class="logo">Admin</div>
+    <div class="search">
+        <span><app-search (resultChange)="onResultChange($event)"></app-search></span>
+        <ul class="nav header-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Notification</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="logout()" href="#">logout</a>
+            </li>
+        </ul>
+    </div>
+</header>
 <div class="container-fluid">
-<div class="row">
+    <div class="row">
+        <!-- Sidebar -->
+        <nav class="col-md-2 d-none d-md-block bg-dark sidebar vh-100">
+            <div class="position-sticky pt-3 text-white">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Reports</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" (click)="logout()" href="#">logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- Main content -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 pt-4">
+            <!-- Cards -->
+            <div class="card-container-flex">
+                <app-cards [cardTitle]="'Cow Info'">
+                    <div ngProjectAs="body">
+                     <app-diary-data></app-diary-data>
+                    </div>  
+                    
+                </app-cards>
 
+                <app-cards [cardTitle]='titleName2'>
+                    <app-entry-book ngProjectAs="body"></app-entry-book>
+                </app-cards>
 
-<!-- Sidebar -->
-<nav class="col-md-2 d-none d-md-block bg-dark sidebar vh-100">
-<div class="position-sticky pt-3 text-white">
-<h5 class="text-center">Admin</h5>
-<ul class="nav flex-column mt-4">
-<li class="nav-item">
-<a class="nav-link text-white" href="#">Dashboard</a>
-</li>
-<li class="nav-item">
-<a class="nav-link text-white" href="#">Users</a>
-</li>
-<li class="nav-item">
-<a class="nav-link text-white" href="#">Reports</a>
-</li>
-<li class="nav-item">
-<a class="nav-link text-white" (click)="logout()" href="#">logout</a>
-</li>
-</ul>
-</div>
-</nav>
+                <app-cards [cardTitle]='listOfEmployee'>
+                    <div ngProjectAs="header">
+                        <app-search [data]="allCustomerList" (resultChange)="onResultChange($event)"></app-search>
+                    </div>
+                    <div ngProjectAs="body">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Name</th>
+                                <th>age</th>
+                                <th>salary</th>
+                                <th>location</th>
+                                <th>Country</th>
+                            </tr>
+                            <tr *ngFor="let list of customerList()">
+                                <td>{{ list.name }}</td>
+                                <td>{{ list.age}}</td>
+                                <td>{{ list.salary}}</td>
+                                <td>{{ list.location}}</td>
+                                <td>{{ list.country}}</td>
+                            </tr>
+                            <tr *ngIf="customerList().length === 0">
+                                <td colspan="5">Data not found</td>
+                            </tr>
+                        </table>
+                    </div>
+                </app-cards>
 
+                  <app-cards [cardTitle]='listOfEmployee'>
+                    <div ngProjectAs="header">
+                        <input type="text"  [formControl]="searchControl"  class="form-control"/>
+                    </div>
+                    <div ngProjectAs="body">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <!-- <th>username</th>
+                                <th>email</th>
+                                <th>address</th>
+                                <th>website</th> -->
+                            </tr>
+                            <tr *ngFor="let list of userList">
+                                <td>{{ list.id }}</td>
+                                <td>{{ list.name }}</td>
+                                <!-- <td>{{ list.username}}</td>
+                                <td>{{ list.email}}</td>
+                                <td>{{ list.address}}</td>
+                                <td>{{ list.website}}</td> -->
+                            </tr>
+                            <!-- <tr *ngIf="userList.length === 0">
+                                <td colspan="6">Data not found</td>
+                            </tr> -->
+                        </table>
+                    </div>
+                </app-cards>
 
-<!-- Main content -->
-<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-
-
-<!-- Navbar -->
-<nav class="navbar navbar-light bg-light mt-2 mb-4 rounded">
-<span class="navbar-brand mb-0 h4">Dashboard</span>
-</nav>
-
-
-<!-- Cards -->
-<app-cards [cardTitle] = 'titleName'>
-    
-</app-cards>
-
-
-<!-- Table -->
+                <app-cards [cardTitle]='titleName'>
+                    <div ngProjectAs="body">
+                        <div>{{userCount$ | async}}</div>
+                        <app-add-user></app-add-user>
+                        <table class="table table-bordered" *ngIf="(userCount$ | async) as count; else noUsers">
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                            </tr>
+                            <tr *ngFor="let user of newUser$ | async">
+                                <td>
+                                    {{user.name}}</td>
+                                <td>
+                                    {{user.email}}</td>
+                                <td>
+                                    {{user.role}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </app-cards>
+            </div>
+            <!-- Table -->
+            <ng-template #noUsers>
+                No data found.
+            </ng-template>
