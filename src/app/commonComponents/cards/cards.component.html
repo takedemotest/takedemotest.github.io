@@ -1,11 +1,13 @@
-<div class="card-container-flex">
   <div class="card card-flex">
    <div class="card_header">
-     <h2>{{cardTitle}}</h2>
+     <h5>{{cardTitle}}</h5>
+      <ng-content select="header"></ng-content>
    </div>
    <div class="card_body">
-        <ng-content></ng-content>
+        <ng-content select="body"></ng-content>
    </div>
-   <div class="card_footer"></div>
+   <div class="card_footer" *ngIf="hasFooter">
+   <ng-content select="[footer]"></ng-content>
+   </div>
   </div>
-</div>
+

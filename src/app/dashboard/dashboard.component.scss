@@ -1,0 +1,19 @@
+header{
+  background:#f1f0f0;
+  border-bottom:1px solid #bababa;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:0px 10px;
+}
+.search{
+  display:flex;
+  justify-content:end;
+  align-items: center;
+  padding:5px;
+}
+.card-container-flex {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}

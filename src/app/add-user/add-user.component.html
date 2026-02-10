@@ -1,0 +1,15 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <input  type="text" placeholder="Name" class="form-control mb-2" formControlName="name"/>
+    <div *ngIf="form.controls['name'].touched && form.controls['name'].invalid">
+        Name is required.
+    </div>
+    <input type="email" placholder="Email" class="form-control mb-2" formControlName="email">
+    <div *ngIf="form.controls['email'].touched && form.controls['email'].invalid">
+        Email is required.
+    </div>
+    <select formControlName="role" class="form-select  mb-2">
+        <option value="USER">User</option>
+        <option value="ADMIN">Admin</option>
+    </select>
+    <button type="submit" class="btn btn-primary">Add</button>
+</form>

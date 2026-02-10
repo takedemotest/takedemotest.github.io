@@ -1,0 +1,110 @@
+@use 'sass:color';
+// 1. Variables - Centralized theme control
+$primary-color: #3498db;
+$success-color: #27ae60;
+$reset-color: #c7c7c7;
+$success-hover: #219150;
+$text-dark: #2f3640;
+$text-muted: #7f8c8d;
+$border-color: #ced4da;
+$bg-color: #f4f7f6;
+$white: #ffffff;
+$radius: 8px;
+$transition: 0.3s ease;
+
+// 2. Mixins - Reusable patterns
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cow-form {
+
+  fieldset {
+    padding: 15px;
+    transition: border-color $transition;
+    &:first-child{
+      padding-bottom:0px;
+    }
+
+    &:hover {
+      border-color: $primary-color;
+    }
+
+    legend {
+      font-weight: 600;
+      color: $text-dark;
+      font-size: 1.1rem;
+    }
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 0.85rem;
+      color: $text-muted;
+      font-weight: 500;
+    }
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid $border-color;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1rem;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 5px rgba($primary-color, 0.3);
+    }
+  }
+
+  @mixin button-style($bg-color) {
+    padding:0px 12px;
+    background-color: $bg-color;
+    color: $white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    height:35px;
+  }
+
+  .btn-container {
+    display:flex;
+    justify-content: end;
+    gap:15px;
+    .submit-btn {
+        @include button-style($success-color);
+
+      &:hover {
+        background-color: $success-hover;
+      }
+    }
+
+    .reset-btn {
+      @include button-style($reset-color);
+    }
+  }
+}
+
+.modal-body{
+  padding:0px;
+  .btn-container{
+    padding:15px;
+    border-top:1px solid #ccc;
+  }
+}
+
+.popup{
+  height:calc(100vh - 250px);
+  overflow:auto;
+}
