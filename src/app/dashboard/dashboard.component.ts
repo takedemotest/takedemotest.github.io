@@ -6,10 +6,9 @@ import { Store } from '@ngrx/store';
 import { LOGOUT } from '../global/store/auth/auth.actions';
 import { SearchComponent } from '../commonComponents/search/search.component';
 import { EntryBookComponent } from '../commonComponents/entry-book/entry-book.component';
-import { UsermodelService } from '../add-user/usermodel.service';
-import { AddUserComponent } from '../add-user/add-user.component';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { DiaryDataComponent } from '../dairy-data/diary-data.component';
+import { DiaryDataComponent } from '../commonComponents/dairy-data/diary-data.component';
+import { UsermodelService } from '../commonComponents/add-user/usermodel.service';
 
 export interface CustomerInfo {
   name: string;
@@ -22,7 +21,7 @@ export interface CustomerInfo {
 @Component({
   standalone: true,
   selector: 'app-dashboard',
-  imports: [CardsComponent, CommonModule, SearchComponent, EntryBookComponent, AddUserComponent, ReactiveFormsModule, DiaryDataComponent],
+  imports: [CardsComponent, CommonModule, SearchComponent, EntryBookComponent, ReactiveFormsModule, DiaryDataComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
