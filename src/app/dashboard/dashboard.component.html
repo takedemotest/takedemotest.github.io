@@ -33,9 +33,8 @@
                 </ul>
             </div>
         </nav>
-        <!-- Main content -->
+        
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 pt-4">
-            <!-- Cards -->
             <div class="card-container-flex">
                 <app-cards [cardTitle]="'Cow Info'">
                     <div ngProjectAs="body">
@@ -75,58 +74,36 @@
                     </div>
                 </app-cards>
 
-                  <app-cards [cardTitle]='listOfEmployee'>
+
+
+            </div>
+
+            <app-cards [cardTitle]="'Daily Expense'">
                     <div ngProjectAs="header">
-                        <input type="text"  [formControl]="searchControl"  class="form-control"/>
+                        <app-search [data]="allCustomerList" (resultChange)="onResultChange($event)"></app-search>
                     </div>
                     <div ngProjectAs="body">
                         <table class="table table-bordered">
                             <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <!-- <th>username</th>
-                                <th>email</th>
-                                <th>address</th>
-                                <th>website</th> -->
+                                <th>Date</th>
+                                <th>Category</th>
+                                <th>Amount</th>
+                                <th>Note</th>
                             </tr>
-                            <tr *ngFor="let list of userList">
-                                <td>{{ list.id }}</td>
-                                <td>{{ list.name }}</td>
-                                <!-- <td>{{ list.username}}</td>
-                                <td>{{ list.email}}</td>
-                                <td>{{ list.address}}</td>
-                                <td>{{ list.website}}</td> -->
-                            </tr>
-                            <!-- <tr *ngIf="userList.length === 0">
-                                <td colspan="6">Data not found</td>
-                            </tr> -->
-                        </table>
-                    </div>
-                </app-cards>
-
-                <app-cards [cardTitle]='titleName'>
-                    <div ngProjectAs="body">
-                        <div>{{userCount$ | async}}</div>
-                        <app-add-user></app-add-user>
-                        <table class="table table-bordered" *ngIf="(userCount$ | async) as count; else noUsers">
                             <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Role</th>
+                                <!-- <td>{{ list.name }}</td>
+                                <td>{{ list.age}}</td>
+                                <td>{{ list.salary}}</td>
+                                <td>{{ list.location}}</td>
+                                <td>{{ list.country}}</td> -->
                             </tr>
-                            <tr *ngFor="let user of newUser$ | async">
-                                <td>
-                                    {{user.name}}</td>
-                                <td>
-                                    {{user.email}}</td>
-                                <td>
-                                    {{user.role}}</td>
+                             <tr>
+                                <td colspan="3">Total Expense:</td>
+                                 <td ></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">Data not found</td>
                             </tr>
                         </table>
                     </div>
                 </app-cards>
-            </div>
-            <!-- Table -->
-            <ng-template #noUsers>
-                No data found.
-            </ng-template>

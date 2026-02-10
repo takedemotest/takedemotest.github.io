@@ -41,7 +41,7 @@ export const routes: Routes = [
   {
     path:'user',
     loadComponent:() =>
-      import('./add-user/add-user.component')
+      import('./commonComponents/add-user/add-user.component')
       .then(c=>c.AddUserComponent)
   },
   { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
