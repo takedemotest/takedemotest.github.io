@@ -9,6 +9,8 @@ import { EntryBookComponent } from '../commonComponents/entry-book/entry-book.co
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { DiaryDataComponent } from '../commonComponents/dairy-data/diary-data.component';
 import { UsermodelService } from '../commonComponents/add-user/usermodel.service';
+import { DynamicFormComponent } from '../../../projects/shared-ui/src/lib/components/dynamic-form/dynamic-form.component';
+import { FormFieldConfig } from '../../../projects/shared-ui/src/lib/models/form-field-model';
 
 export interface CustomerInfo {
   name: string;
@@ -21,7 +23,7 @@ export interface CustomerInfo {
 @Component({
   standalone: true,
   selector: 'app-dashboard',
-  imports: [CardsComponent, CommonModule, SearchComponent, EntryBookComponent, ReactiveFormsModule, DiaryDataComponent],
+  imports: [CardsComponent, CommonModule, SearchComponent, ReactiveFormsModule, DynamicFormComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -45,6 +47,42 @@ export class DashboardComponent {
   searchControl= new FormControl('');
 
   userList:any;
+
+  userFormFields: FormFieldConfig[] = [
+  {
+    type: 'text',
+    name: 'firstName',
+    label: 'First Name',
+    placeholder:'First Name',
+    required: true,
+    minLength: 3
+  },
+  {
+    type: 'email',
+    name: 'email',
+    label: 'Email',
+    placeholder:'Email',
+    required: true
+  },
+   {
+    type: 'text',
+    name: 'Number',
+    label: 'Mobile',
+    placeholder:'Mobile Number',
+    required: true
+  },
+  {
+    type: 'select',
+    name: 'role',
+    label: 'Role',
+    placeholder:'Role',
+    options: [
+      { label: 'Admin', value: 'admin' },
+      { label: 'User', value: 'user' }
+    ]
+  }
+];
+
 
 
 
@@ -121,6 +159,10 @@ export class DashboardComponent {
 
     onResultChange(filteredData: any[]) {
       this.customerList.set(filteredData)
+  }
+
+  handleSubmit(){
+      console.log()
   }
 
   logout() {
