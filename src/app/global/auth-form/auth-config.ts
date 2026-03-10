@@ -18,3 +18,9 @@ export interface AuthConfig {
     groupValidator?:ValidatorFn;
 }
 
+export enum AuthActionType{
+    LOGIN = 'login',
+    REGISTER = 'register',
+    RESET = 'reset'
+}
+

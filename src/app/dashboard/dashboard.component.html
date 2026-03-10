@@ -78,34 +78,43 @@
 
             </div>
 
-            <app-cards [cardTitle]="'Daily Expense'" style="display:none;">
-                    <div ngProjectAs="header">
-                        <app-search [data]="allCustomerList" (resultChange)="onResultChange($event)"></app-search>
-                    </div>
-                    <div ngProjectAs="body">
-                        <table class="table table-bordered">
-                            <tr>
-                                <th>Date</th>
-                                <th>Category</th>
-                                <th>Amount</th>
-                                <th>Note</th>
-                            </tr>
-                            <tr>
-                                <!-- <td>{{ list.name }}</td>
+<app-cards [cardTitle]="'Daily Expense'" style="display: none">
+  <div ngProjectAs="header">
+    <app-search
+      [data]="allCustomerList"
+      (resultChange)="onResultChange($event)"
+    ></app-search>
+  </div>
+  <div ngProjectAs="body">
+    <table class="table table-bordered">
+      <tr>
+        <th>Date</th>
+        <th>Category</th>
+        <th>Amount</th>
+        <th>Note</th>
+      </tr>
+      <tr>
+        <!-- <td>{{ list.name }}</td>
                                 <td>{{ list.age}}</td>
                                 <td>{{ list.salary}}</td>
                                 <td>{{ list.location}}</td>
                                 <td>{{ list.country}}</td> -->
-                            </tr>
-                             <tr>
-                                <td colspan="3">Total Expense:</td>
-                                 <td ></td>
-                            </tr>
-                            <tr>
-                                <td colspan="4">Data not found</td>
-                            </tr>
-                        </table>
-                    </div>
-                </app-cards>
+      </tr>
+      <tr>
+        <td colspan="3">Total Expense:</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colspan="4">Data not found</td>
+      </tr>
+    </table>
+  </div>
+</app-cards>
+ <ul>
+    <li>test</li>
+  <li *ngFor="let t of newUser$ | async">
+    {{ t.name}}
+  </li>
+</ul>
 
-<lib-dynamic-form [fields]="userFormFields" (formSubmit)="handleSubmit()"></lib-dynamic-form>
+<lib-dynamic-form class="dynamic-form" [fields]="userFormFields" (formSubmit)="handleSubmit()"></lib-dynamic-form>

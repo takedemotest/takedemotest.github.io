@@ -1,0 +1,11 @@
+.field-container{
+    position:relative;
+    padding-bottom:25px;
+    .error-label{
+        position:absolute;
+        bottom:7px;
+        left:0px;
+        color:red;
+        font-size:12px;
+    }
+}

@@ -1,5 +1,5 @@
 import { Validators } from '@angular/forms';
-import { AuthConfig } from './auth-config';
+import { AuthActionType, AuthConfig } from './auth-config';
 import { ValidationService } from '../../shared/validators/validation.service';
 
 export const AUTH_CONFIG: Record<string, AuthConfig> = {
@@ -26,7 +26,7 @@ export const AUTH_CONFIG: Record<string, AuthConfig> = {
         validators: [Validators.required, ValidationService.password()],
       },
     ],
-    submitAction: 'login',
+    submitAction: AuthActionType.LOGIN,
   },
   register: {
     title: 'Register',
@@ -44,7 +44,7 @@ export const AUTH_CONFIG: Record<string, AuthConfig> = {
         label: 'Email',
         placeholder: 'email',
         type: 'email',
-        validators: [Validators.required, Validators.email],
+        validators: [Validators.required, Validators.email, ValidationService.email()],
       },
       {
         name: 'password',
@@ -62,7 +62,7 @@ export const AUTH_CONFIG: Record<string, AuthConfig> = {
       }
     ],
      groupValidator:ValidationService.match("password", "confirmPassword"),
-    submitAction: 'Register',
+    submitAction: AuthActionType.REGISTER,
   },
   reset: {
     title: 'Reset Password',
@@ -73,9 +73,9 @@ export const AUTH_CONFIG: Record<string, AuthConfig> = {
         label: 'Email',
         type: 'email',
         placeholder: 'email',
-        validators: [Validators.required, Validators.email],
+        validators: [Validators.required, Validators.email,  ValidationService.email()],
       },
     ],
-    submitAction: 'Reset',
+    submitAction: AuthActionType.RESET,
   },
 };

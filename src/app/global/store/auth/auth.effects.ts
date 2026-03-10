@@ -10,17 +10,14 @@ import { Router } from '@angular/router';
 export class AuthEffects {
     private actions$= inject(Actions)
     private api= inject(ApiService) 
-  constructor(private router: Router) {}
+  
+    constructor(private router: Router) {}
   login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(LOGIN),
       switchMap(action =>
         this.api.login(action.email, action.password).pipe(
          map((response: any) => {
-          // ✅ STORE TOKEN
-          //localStorage.setItem('token', response.token);
-
-          // ✅ DISPATCH SUCCESS
           return LOGIN_SUCCESS({ 
             user: {
               id: response.id,
@@ -61,7 +58,7 @@ export class AuthEffects {
       {dispatch:false}
   );
 
-  LOGOUT = createEffect(
+  LOGOUT$ = createEffect(
     ()=>
       this.actions$.pipe(
         ofType(LOGOUT),

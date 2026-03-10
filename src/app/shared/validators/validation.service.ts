@@ -44,19 +44,26 @@ export class ValidationService {
     }
   }
 
-  static match(controlName:string, matchName:string):ValidatorFn{
-    return(group: AbstractControl):ValidationErrors | null =>{
-      const control = group.get(controlName);
-      const match = group.get(matchName);
+static match(controlName: string, matchName: string): ValidatorFn {
+  return (group: AbstractControl): ValidationErrors | null => {
 
-      if(!control || !match) return null;
-      if(control.value !== match.value){
-        match.setErrors({notMatching : true});
-        return {notMatching : true}
-      }
-      match.setErrors(null);
+    const control = group.get(controlName);
+    const match = group.get(matchName);
+
+    if (!control || !match) return null;
+
+    if (match.errors && !match.errors['notMatching']) {
       return null;
     }
-  }
+
+    if (control.value !== match.value) {
+      match.setErrors({ notMatching: true });
+    } else {
+      match.setErrors(null);
+    }
+
+    return null;
+  };
+}
 
 }

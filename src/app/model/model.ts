@@ -3,3 +3,10 @@ export interface User {
     email: string;
     name: string;
 }
+
+export interface Task{
+      userId: number;
+        id: number;
+        title: string;
+        completed: boolean;
+}

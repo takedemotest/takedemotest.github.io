@@ -11,29 +11,31 @@
         <div *ngFor="let field of formConfig.fields" class="form-group">
           <label>{{ field.label }}</label>
           <input [type]="field.type" [formControlName]="field.name" class="form-control" />
-          <small class="error"
-  *ngIf="form.get(field.name)?.touched &&
-         form.get(field.name)?.invalid">
+          <div class="error" *ngIf="form.get(field.name)?.touched && form.get(field.name)?.invalid">
+                <span *ngIf="form.get(field.name)?.errors?.['required']">
+                  {{ field.label }} is required
+                </span>
+                <span *ngIf="form.get(field.name)?.errors?.['emailInvalid']">
+                  Invalid email format
+                </span>
 
-  <span *ngIf="form.get(field.name)?.errors?.['required']">
-    {{ field.label }} is required
-  </span>
+                <span *ngIf="form.get(field.name)?.errors?.['hasLen']">
+                  Password must be at least 6 characters
+                </span>
+                 <span *ngIf="form.get(field.name)?.errors?.['hasNumber']">
+                  Password must contain a number
+                </span>
+                <span *ngIf="form.get(field.name)?.errors?.['hasSpecial']">
+                   Password must contain a special character
+                </span>
+                <span *ngIf="form.get(field.name)?.errors?.['hasUpperCase']">
+                   Password must contain an uppercase letter
+                </span>
+                   <span *ngIf="form.get(field.name)?.errors?.['notMatching']">
+                  Passwords do not match
+                </span>
 
-  <span *ngIf="form.get(field.name)?.errors?.['emailInvalid']">
-    Invalid email format
-  </span>
-
-  <span *ngIf="form.get(field.name)?.errors?.['hasLen']">
-    Password should be 6 character.
-  </span>
-  <span *ngIf="form.get(field.name)?.errors?.['hasUpperCase']">
-    Password too hasUpperCase
-  </span>
-
-  <span *ngIf="form.get(field.name)?.errors?.['notMatching']">
-    Passwords do not match
-  </span>
-</small>
+              </div>
         </div>
         <!-- SUBMIT BUTTON -->
         <button type="submit" [disabled]="form.invalid || loading" class="btn mt-2">

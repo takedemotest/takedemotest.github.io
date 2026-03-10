@@ -1,5 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="submit()">
     <ng-container class="form-group" *ngFor="let field of fields">
+         <div class="field-container">
             <label>
                 <span *ngIf="field.required" style="color:red">*</span>
                 {{field.label}}
@@ -31,9 +32,9 @@
             />
 
             <div *ngIf="form.get(field.name)?.touched && form.get(field.name)?.invalid"></div>
-            <small *ngIf="form.get(field.name)?.errors?.['required']">
+            <div class="error-label" *ngIf="form.get(field.name)?.errors?.['required']">
                 {{field.label}} is required
-            </small>
+            </div> </div>
     </ng-container>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
