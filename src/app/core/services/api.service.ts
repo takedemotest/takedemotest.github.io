@@ -11,23 +11,50 @@ export class ApiService {
 
 
 
-private BASE_URL = `${environment.apiUrl}/auth`;
+private BASE_URL = `${environment.apiUrl}`;
 
  login(email: string, password: string): Observable<User> {
     return this.http.post<User>(
-      `${this.BASE_URL}/login`,
+      `${this.BASE_URL}/auth/login`,
       { email, password }
     );
   }
 
-async fechtData(path:string){
-    const response = await fetch("https://jsonplaceholder.typicode.com/users")
+  register(name:string, email:string, password:string):Observable<User>{
+     return this.http.post<User>(
+      `${this.BASE_URL}/auth/register`,
+      {name, email, password}
+     )
+  }
 
-}
+  getDashboardStats(){
+    return this.http.get<any>(
+      `${this.BASE_URL}/dashboard/stats`
+    )
+  }
 
-//rxjs practice
-taskList():Observable<Task[]>{
-  return this.http.get<Task[]>("https://jsonplaceholder.typicode.com/todos")
-}
+  getAnimals(){
+    return this.http.get<any>(
+      `${this.BASE_URL}/api/animals`
+    )
+  }
+
+  addAnimal(animal:any){
+    return this.http.post<any>(
+      `${this.BASE_URL}/api/animals`, animal
+    )
+  }
+
+  updateAnimal(animal:any){
+    return this.http.put<any>(
+      `${this.BASE_URL}/api/${animal._id}`, animal
+    )
+  }
+
+  deleteAnimal(id:string){
+    return this.http.delete<any>(
+      `${this.BASE_URL}/api/${id}`
+    )
+  }
 
 }

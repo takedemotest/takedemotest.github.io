@@ -1,8 +1,10 @@
-const express = require('express');
-const router = express.Router();
 const {login, register} = require('../controllers/auth.controller')
 
-router.post('/login', login);
-router.post('/register', register);
+async function authRoutes(fastify, options){
+fastify.post('/login', login);
+fastify.post('/register', register);
+}
 
-module.exports = router;
+
+
+module.exports = authRoutes;

@@ -2,46 +2,60 @@ const User = require('../models/user.model');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 
-exports.register = async(req, res)=>{
+exports.register = async(request, reply)=>{
     
     try{
-    const {name, email, password} = req.body;
+    debugger;
+    const {name, email, password} = request.body;
 
     const existingUser = await User.findOne({email});
+
     if(existingUser){
-        return res.status(400).json({message:'user already exists'})
+       return reply.code(400).send({
+        message:'Already user available.'
+       })
     };
-    const hasPassword = await bcrypt.hash(password, 10)
+
+    const hasPassword = await bcrypt.hash(password, 10);
+
     const user = await User.create({
         name,
         email,
         password:hasPassword
     })
-    res.status(201).json({message: "user register sucessfully"})}
-            catch (error) {
-            res.status(500).json({ message: "Server error" });
-        }
-}
 
-exports.login = async(req, res)=>{
-    const {email, password} = req.body;
+    reply.code(201).send({message: "user register sucessfully fdfsfs"})}
+            catch (error) {
+            reply.code(500).send({ message: "Server error" });
+        }
+};
+
+exports.login = async(request, reply)=>{
+     try{
+    const {email, password} = request.body;
     const user = await User.findOne({email});
     if(!user){
-        return res.status(401).json({message:'Invalid credentials'});
+        return reply.code(401).send({message:'Invalid credentials'});
     };
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if(!isPasswordValid){
-        return res.status(401).json({message:'Invalid credentials'});
+        return reply.code(401).send({message:'Invalid credentials'});
     }
     const token =jwt.sign(
         {userId: user._id},
         process.env.JWT_SECRET,
         {expiresIn:'1h'}
     )
-    res.json({
+    reply.send({
         id: user._id,
         name: user.name,
         email: user.email,
         token
     });
+}catch(error){
+    return reply.code(500).send({
+        message:'Server error'
+    })
+}
 };
+
