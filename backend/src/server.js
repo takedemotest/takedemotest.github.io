@@ -22,11 +22,9 @@ fastify.register(require('./routes/animal.routes'), {
 })
 
 
-
-connectDB();
-
 const start = async() =>{
     try{
+        await connectDB();
         const port = process.env.port || 5000
         await fastify.listen({
             port:port,
