@@ -1,120 +1,94 @@
 <header>
-    <div class="logo">Admin</div>
-    <div class="search">
-        <span><app-search (resultChange)="onResultChange($event)"></app-search></span>
-        <ul class="nav header-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Notification</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" (click)="logout()" href="#">logout</a>
-            </li>
-        </ul>
-    </div>
+  <div class="logo">Admin</div>
+  <div class="search">
+    <span
+      ><app-search (resultChange)="onResultChange($event)"></app-search
+    ></span>
+    <ul class="nav header-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Notification</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="logout()" href="#">logout</a>
+      </li>
+    </ul>
+  </div>
 </header>
 <div class="container-fluid">
-    <div class="row">
-        <!-- Sidebar -->
-        <nav class="col-md-2 d-none d-md-block bg-dark sidebar vh-100">
-            <div class="position-sticky pt-3 text-white">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Users</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Reports</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" (click)="logout()" href="#">logout</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 pt-4">
-            <div class="card-container-flex">
-                <!-- <app-cards [cardTitle]="'Info'">
-                    <div ngProjectAs="body">
-                     <app-diary-data></app-diary-data>
-                    </div>  
-                    
-                </app-cards> -->
+  <div class="row">
+    <nav class="col-md-2 d-none d-md-block bg-dark sidebar vh-100">
+      <div class="position-sticky pt-3 text-white">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">Reports</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" (click)="logout()" href="#"
+              >logout</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
 
-                <!-- <app-cards [cardTitle]='titleName2'>
-                    <app-entry-book ngProjectAs="body"></app-entry-book>
-                </app-cards> -->
-
-                <!-- <app-cards [cardTitle]='listOfEmployee'>
-                    <div ngProjectAs="header">
-                        <app-search [data]="allCustomerList" (resultChange)="onResultChange($event)"></app-search>
-                    </div>
-                    <div ngProjectAs="body">
-                        <table class="table table-bordered">
-                            <tr>
-                                <th>Name</th>
-                                <th>age</th>
-                                <th>salary</th>
-                                <th>location</th>
-                                <th>Country</th>
-                            </tr>
-                            <tr *ngFor="let list of customerList()">
-                                <td>{{ list.name }}</td>
-                                <td>{{ list.age}}</td>
-                                <td>{{ list.salary}}</td>
-                                <td>{{ list.location}}</td>
-                                <td>{{ list.country}}</td>
-                            </tr>
-                            <tr *ngIf="customerList().length === 0">
-                                <td colspan="5">Data not found</td>
-                            </tr>
-                        </table>
-                    </div>
-                </app-cards> -->
-
-
-
-            </div>
-
-<app-cards [cardTitle]="'Daily Expense'" style="display: none">
-  <div ngProjectAs="header">
-    <app-search
-      [data]="allCustomerList"
-      (resultChange)="onResultChange($event)"
-    ></app-search>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 pt-4">
+      <!-- <div class="card-container-flex">
+        <lib-dynamic-form
+          class="dynamic-form"
+          [fields]="userFormFields"
+          (formSubmit)="handleSubmit()">
+        </lib-dynamic-form>
+      </div> -->
+      <div class="layout">
+        <div class="box box-left">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Sr No.</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Type</th>
+                <th>Milk</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td class="highlight">TX</td>
+                <td class="highlight">5</td>
+                <td>Cow</td>
+                <td>18</td>
+                <td class="highlight">
+                  <a (click)="add()">ADD</a> |
+                  <a (click)="delete()">Delete</a> |
+                  <a (click)="edit()">Edit</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="box box-top-right">
+          <div class="chart">
+            <h3>Milk Production</h3>
+            <app-chart [chartData]="lineChartData()" chartType="line">
+            </app-chart>
+          </div>
+        </div>
+        <!-- <div class="box box-bottom-right">
+          <div class="chart">
+            <h3>Animal Distribution</h3>
+            <app-chart [chartData]="pieChartData" [chartType]="'pie'">
+            </app-chart>
+          </div>
+        </div> -->
+      </div>
+    </main>
   </div>
-  <div ngProjectAs="body">
-    <table class="table table-bordered">
-      <tr>
-        <th>Date</th>
-        <th>Category</th>
-        <th>Amount</th>
-        <th>Note</th>
-      </tr>
-      <tr>
-        <!-- <td>{{ list.name }}</td>
-                                <td>{{ list.age}}</td>
-                                <td>{{ list.salary}}</td>
-                                <td>{{ list.location}}</td>
-                                <td>{{ list.country}}</td> -->
-      </tr>
-      <tr>
-        <td colspan="3">Total Expense:</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td colspan="4">Data not found</td>
-      </tr>
-    </table>
-  </div>
-</app-cards>
- <ul>
-    <li>test</li>
-  <li *ngFor="let t of newUser$ | async">
-    {{ t.name}}
-  </li>
-</ul>
-
-<lib-dynamic-form class="dynamic-form" [fields]="userFormFields" (formSubmit)="handleSubmit()"></lib-dynamic-form>
+</div>
