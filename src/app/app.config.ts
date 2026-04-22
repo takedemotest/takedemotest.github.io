@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { APP_INITIALIZER, ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import {HTTP_INTERCEPTORS,provideHttpClient,withInterceptorsFromDi} from '@angular/common/http';
 import { routes } from './app.routes';
@@ -9,6 +9,9 @@ import { AuthEffects } from './global/store/auth/auth.effects';
 import { DashboardEffects } from './global/store/dashboard/dashboard.effects';
 import { dashboardState } from './global/store/dashboard/dashboard.reducer';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
+import { IconService } from './core/services/icon.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -26,6 +29,12 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
 
     provideZoneChangeDetection({ eventCoalescing: true }),
-
+    importProvidersFrom(MatIconModule),
+    {
+      provide: APP_INITIALIZER,
+     useFactory: (iconService: IconService) => () => iconService.registerIcons(),
+  deps: [IconService], // <--- Now it depends on your Service
+      multi: true,
+    },
   ]
 };

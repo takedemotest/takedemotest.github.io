@@ -21,7 +21,11 @@ export class AuthEffects {
           map(response=> AuthActions.REGISTER_SUCCESS({user:response})),
           catchError(error=>of(AuthActions.REGISTER_FAILED({error})))
         )
-      )
+      ),
+      tap(()=>{
+        console.log('Registration successful, navigating to login...');
+        this.router.navigate(['/auth/login']);
+      })
     )
   )
   

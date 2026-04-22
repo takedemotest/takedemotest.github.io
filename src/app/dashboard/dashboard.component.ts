@@ -36,6 +36,9 @@ import { LOAD_STATS } from '../global/store/dashboard/dashboard.actions'
 import { ChartConfiguration } from 'chart.js'
 import { selectDashboardStates } from '../global/store/dashboard/dashboard.selectors'
 import { ChartComponent } from '../../../projects/shared-ui/src/lib/components/chart/chart.component'
+import { MatIconModule } from '@angular/material/icon'
+import { IconService } from '../core/services/icon.service'
+
 
 @Component({
   standalone: true,
@@ -45,7 +48,8 @@ import { ChartComponent } from '../../../projects/shared-ui/src/lib/components/c
     SearchComponent,
     ReactiveFormsModule,
     DynamicFormComponent,
-    ChartComponent
+    ChartComponent,
+    MatIconModule
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
@@ -98,7 +102,7 @@ export class DashboardComponent {
     }
   ]
 
-  constructor (private store: Store, private cdr:ChangeDetectorRef) {}
+  constructor (private store: Store, private cdr:ChangeDetectorRef,private iconService: IconService) {}
 
   ngOnInit () {
     this.store.dispatch(LOAD_STATS())

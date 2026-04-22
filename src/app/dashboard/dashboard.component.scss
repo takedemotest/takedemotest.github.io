@@ -1,10 +1,14 @@
 header{
-  background:#f1f0f0;
-  border-bottom:1px solid #bababa;
+    background:var(--sub-bg-color);
   display:flex;
   justify-content: space-between;
   align-items: center;
-  padding:0px 10px;
+  padding:15px 10px;
+  .header-nav{
+    a{
+      color:var(--text-color);
+    }
+  }
 }
 .search{
   display:flex;
@@ -44,8 +48,8 @@ app-chart {
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: 1fr 1fr;
-  gap: 10px;
-  height: 420px;
+  gap: 15px;
+  padding:15px;
 }
 
 .box-left {
@@ -92,5 +96,53 @@ app-chart {
 
   .box-left {
     min-height: 180px;
+  }
+}
+.main-container{
+  display:grid;
+  grid-template-columns: 250px 1fr;
+  min-height:100vh;
+  min-height:100dvh;
+  .sidebar{
+    background:var(--main-bg-color);
+    color:white;
+    padding:0 20px 20px;
+    position:sticky;
+    top:0;
+    .nav{
+      li{
+        &:hover{
+        background:var(--sub-bg-color);
+        border-radius:3px;
+      }
+      a{
+        display:flex;
+        align-items: center;
+        gap:10px;
+        .mat-icon{
+          width:20px;
+          height:24px;
+          ::ng-deep svg{
+            fill:white;
+          }
+        }
+      }
+      }
+        .logo{
+      text-align: center;
+      font-size:1.5em;
+      font-weight:bold;
+      margin-bottom:20px;
+     a{
+       .mat-icon{
+        width:30px;
+        height:36px;
+        ::ng-deep svg{
+          fill:white;
+        }
+      }
+     }
+    }
+    }
   }
 }
