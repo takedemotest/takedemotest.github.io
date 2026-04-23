@@ -1,11 +1,12 @@
-<div class="container vh-100 d-flex justify-content-center align-items-center">
-  <div class="card shadow p-4" style="width: 400px;">
-    <div class="auth-container">
-      <!-- TITLE -->
+<div class="auth-container vh-100 justify-content-end align-items-center">
+    <div class="splash-img">
+        <img src="../../../assets/krishito.png" alt="flash Screen" class="flash-screen">
+    </div>
+    <div class="auth-form">
+      <div class="card p-4">
       <h2 class="title">
         {{ formConfig.title }}
       </h2>
-      <!-- FORM -->
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <!-- DYNAMIC FIELDS -->
         <div *ngFor="let field of formConfig.fields" class="form-group">
@@ -48,7 +49,6 @@
           {{ error }}
         </p>
       </form>
-      <!-- LINKS -->
       <div class="links mt-1">
         <a *ngIf="authType === 'login'" routerLink="/auth/register">
           Create account
@@ -63,4 +63,4 @@
     </div>
   </div>
 </div>
-<img src="../../../assets/krishito.jpg" alt="flash Screen" class="flash-screen">
+<!-- <img src="../../../assets/krishito.png" alt="flash Screen" class="flash-screen"> -->
