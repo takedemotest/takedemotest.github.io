@@ -1,7 +1,7 @@
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { ApiService } from "../../../core/services/api.service";
 import { inject, Injectable } from "@angular/core";
-import { map, switchMap } from "rxjs/operators";
+import { map, mergeMap, switchMap } from "rxjs/operators";
 import { addAnimal, addAnimalSuccess, deleteAnimal, deleteAnimalSucess, loadAnimals, loadAnimalsSuccess, updateAnimal, updateAnimalSuccess } from "./animal.actions";
 
 @Injectable()
@@ -48,11 +48,12 @@ export class AnimalEffects {
   delete$ = createEffect(() =>
     this.actions$.pipe(
       ofType(deleteAnimal),
-      switchMap(action =>
+      mergeMap(action =>
         this.api.deleteAnimal(action.id).pipe(
           map(() => deleteAnimalSucess({ id: action.id }))
         )
       )
     )
   );
+
 }

@@ -3,6 +3,8 @@ export interface Animal {
   name: string;
   type: string;
   milkProduction: number;
+  age:number;
+  healthStatus:string;
 }
 
 export interface AnimalState{

@@ -57,28 +57,36 @@
       </div> -->
     <div class="layout">
       <div class="box box-left">
+
+        <div class="table-header">
+          <div class="table-title">Animal List </div>
+            <div class="table-actions">
+              <button class="btn btn-primary" (click)="add()">Add</button>
+              <button class="btn btn-danger" (click)="delete()">Delete</button> 
+        </div>
+   </div>
         <table class="table">
           <thead>
             <tr>
-              <th>Sr No.</th>
+              <th><input type="checkbox" 
+               #masterCheck></th>
               <th>Name</th>
               <th>Age</th>
               <th>Type</th>
               <th>Milk</th>
-              <th>Action</th>
+              <th>Health Status</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td class="highlight">TX</td>
-              <td class="highlight">5</td>
-              <td>Cow</td>
-              <td>18</td>
-              <td class="highlight">
-                <a (click)="add()">ADD</a> | <a (click)="delete()">Delete</a> |
-                <a (click)="edit()">Edit</a>
-              </td>
+            <tr *ngFor="let animal of (animals$ | async); let i = index">
+              <td class="highlight"><input type="checkbox" 
+               [checked]="selectedIds.has(animal._id)" 
+               (change)="toggleSelection(animal._id)"></td>
+              <td class="highlight">{{animal.name}}</td>
+              <td>{{animal.age}}</td>
+              <td>{{animal.type}}</td>
+              <td>{{animal.milkProduction}}</td>
+              <td>{{animal.healthStatus}}</td>
             </tr>
           </tbody>
         </table>

@@ -36,6 +36,6 @@ export const animalReducer = createReducer(
 
   on(AnimalAction.deleteAnimalSucess, (state, { id }) => ({
     ...state,
-    animals: state.animals.filter(a => a._id !== id)
+    animals: state.animals.filter(animal => animal._id !== id)
   }))
 );

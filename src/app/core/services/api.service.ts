@@ -35,25 +35,25 @@ private BASE_URL = `${environment.apiUrl}`;
 
   getAnimals(){
     return this.http.get<any>(
-      `${this.BASE_URL}/api/animals`
+      `${this.BASE_URL}/animals`
     )
   }
 
   addAnimal(animal:any){
     return this.http.post<any>(
-      `${this.BASE_URL}/api/animals`, animal
+      `${this.BASE_URL}/animals`, animal
     )
   }
 
   updateAnimal(animal:any){
     return this.http.put<any>(
-      `${this.BASE_URL}/api/${animal._id}`, animal
+      `${this.BASE_URL}/${animal._id}`, animal
     )
   }
 
   deleteAnimal(id:string){
     return this.http.delete<any>(
-      `${this.BASE_URL}/api/${id}`
+      `${this.BASE_URL}/${id}`
     )
   }
 

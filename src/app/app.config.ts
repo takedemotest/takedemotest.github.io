@@ -12,6 +12,8 @@ import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { IconService } from './core/services/icon.service';
+import { animalReducer } from './global/store/animal/animal.reducer';
+import { AnimalEffects } from './global/store/animal/animal.effect';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,10 +23,11 @@ export const appConfig: ApplicationConfig = {
 
     provideStore({
       auth: authReducer,
-      dashboard:dashboardState
+      dashboard:dashboardState,
+      animals:animalReducer
     }),
 
-    provideEffects([AuthEffects, DashboardEffects]),
+    provideEffects([AuthEffects, DashboardEffects, AnimalEffects]),
 
     provideRouter(routes),
 

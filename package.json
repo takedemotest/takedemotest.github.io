@@ -26,6 +26,7 @@
     "bootstrap": "^5.3.8",
     "chart.js": "^4.5.1",
     "fastify": "^5.8.2",
+    "fastify-print-routes": "^5.0.1",
     "ng2-charts": "^6.0.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
