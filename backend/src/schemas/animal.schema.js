@@ -6,8 +6,8 @@ exports.createAnimalSchema={
             name: {type:'string'},
             type:{type:'string'},
             age:{type:'number'},
-            milkProduction:{type:'number'}
-
+            milkProduction:{type:'number'},
+            healthStatus: { type: 'string', enum: ['Healthy', 'Sick', 'Under Treatment'] }
         }
     }
 }

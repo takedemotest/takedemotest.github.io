@@ -1,17 +1,19 @@
 const Animal = require('../models/animal.model');
 
 exports.getAnimals = async(request, reply)=>{
-            const animals =await Animal.find();
-            return animals
+            try{
+                const animals =await Animal.find().lean();
+                return animals;
+            }
+            catch(error){
+                reply.status(500).send({message: 'Error fetching animals', error: error.message})
+            }
 
 }
 
 exports.createAnimals = async(request, reply)=>{
       const createAnimal = await Animal.create(request.body)
-      return {
-        message: 'animal created',
-        createAnimal
-      }
+      return createAnimal
 }
 
 exports.updateAnimals = async(request, reply)=>{
@@ -19,13 +21,19 @@ exports.updateAnimals = async(request, reply)=>{
     const updateAnimal = await Animal.findByIdAndUpdate(
         id,
         request.body,
-        {new:true}
+        {new:true, runValidators:true}
     )
+    if(!updateAnimal){
+        return reply.status(404).send({message: 'Animal not found'})
+    }
     return updateAnimal
 }
 
-exports.deleteAnimal = async(request, reply)=>{
+exports.deleteAnimals = async(request, reply)=>{
     const {id} = request.params
-    await Animal.findByIdAndDelete(id)
+    const deleteAnimal = await Animal.findByIdAndDelete(id)
+    if(!deleteAnimal){
+        return reply.status(404).send({message: 'Animal not found'})
+    }
     return {message: 'Animal deleted'}
 }
