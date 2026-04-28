@@ -1,45 +1,49 @@
 <div class="main-container">
   <nav class="sidebar">
-    <div class="position-sticky pt-3 text-white">
+    <div class="position-sticky pt-3">
       <ul class="nav flex-column">
-         <li class="nav-item logo">
-          <a class="nav-link text-white" href="#"><mat-icon svgIcon="logo"></mat-icon>KRISHITO</a>
+        <li class="nav-item logo">
+          <a class="nav-link" href="#"><mat-icon svgIcon="logo"></mat-icon>KRISHITO</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#">Dashboard</a>
+          <a class="nav-link" href="#">Dashboard</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#">Users</a>
+          <a class="nav-link" href="#">Users</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#">Reports</a>
+          <a class="nav-link" href="#">Reports</a>
         </li>
-         <li class="nav-item">
-          <a class="nav-link text-white" href="#">Manage Your Products</a>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Manage Your Products</a>
           <ul>
             <li><a href="">Buy</a></li>
             <li><a href="">Sell</a></li>
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" (click)="logout()" href="#"><mat-icon svgIcon="register"></mat-icon>logout</a>
+          <a class="nav-link" (click)="logout()" href="#"><mat-icon svgIcon="register"></mat-icon>logout</a>
         </li>
       </ul>
     </div>
   </nav>
   <main class="">
     <header>
-        <div class="search"> <span><app-search (resultChange)="onResultChange($event)"></app-search></span></div>
+      <div class="search">
+
+          <app-search (resultChange)="onResultChange($event)"></app-search>
+          <mat-icon svgIcon="search"></mat-icon>
+    
+      </div>
       <div class="">
-       
         <ul class="nav header-nav">
           <li class="nav-item">
             <a class="nav-link" href="#">Notification</a>
           </li>
-           <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link" href="#">Help</a>
           </li>
-           <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link" href="#">Profile</a>
           </li>
           <li class="nav-item">
@@ -48,28 +52,37 @@
         </ul>
       </div>
     </header>
-    <!-- <div class="card-container-flex">
-        <lib-dynamic-form
-          class="dynamic-form"
-          [fields]="userFormFields"
-          (formSubmit)="handleSubmit()">
-        </lib-dynamic-form>
-      </div> -->
-    <div class="layout">
-      <div class="box box-left">
+    <div class="card-container-flex">
+      <div class="box">
+        @if (user$ | async; as user) {
+        <h2 class="user">Welcome to the Dashboard, <span class="text-primary-color">{{ user.name }}</span></h2>}
+      </div>
+    </div>
+    <div class="card-container-flex">
+      @if (activePlugin(); as plugin) {
+      <lib-dynamic-form [fields]="plugin.fields" [buttonConfig]="plugin.buttonConfig" [title]="plugin.title"
+        [type]="plugin.type" (actionTriggered)="handleSubmit($event)">
+      </lib-dynamic-form>
 
+      } @else {
+      <p>Loading plugin configuration...</p>
+      }
+
+    </div>
+    <div class="layout">
+      <div class="box">
         <div class="table-header">
-          <div class="table-title">Animal List </div>
-            <div class="table-actions">
-              <button class="btn btn-primary" (click)="add()">Add</button>
-              <button class="btn btn-danger" (click)="delete()">Delete</button> 
+          <div class="table-title">Animal List</div>
+          <div class="table-actions">
+            <button class="btn btn-primary" (click)="add()">Add</button>
+            <button class="btn btn-secondary" (click)="edit()">Edit</button>
+            <button class="btn btn-danger" (click)="delete()">Delete</button>
+          </div>
         </div>
-   </div>
         <table class="table">
           <thead>
             <tr>
-              <th><input type="checkbox" 
-               #masterCheck></th>
+              <th><input type="checkbox" #masterCheck /></th>
               <th>Name</th>
               <th>Age</th>
               <th>Type</th>
@@ -78,20 +91,20 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let animal of (animals$ | async); let i = index">
-              <td class="highlight"><input type="checkbox" 
-               [checked]="selectedIds.has(animal._id)" 
-               (change)="toggleSelection(animal._id)"></td>
-              <td class="highlight">{{animal.name}}</td>
-              <td>{{animal.age}}</td>
-              <td>{{animal.type}}</td>
-              <td>{{animal.milkProduction}}</td>
-              <td>{{animal.healthStatus}}</td>
+            <tr *ngFor="let animal of animals$ | async; let i = index">
+              <td class="highlight">
+                <input type="checkbox" [checked]="selectedIds.has(animal._id)" (change)="toggleSelection(animal._id)" />
+              </td>
+              <td class="highlight">{{ animal.name }}</td>
+              <td>{{ animal.age }}</td>
+              <td>{{ animal.type }}</td>
+              <td>{{ animal.milkProduction }}</td>
+              <td>{{ animal.healthStatus }}</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <div class="box box-top-right">
+      <div class="box">
         <div class="chart">
           <h3>Milk Production</h3>
           <app-chart [chartData]="lineChartData()" chartType="line">

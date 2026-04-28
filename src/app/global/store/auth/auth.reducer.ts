@@ -2,9 +2,12 @@ import { createReducer, on } from '@ngrx/store';
 import * as AuthActions from './auth.actions';
 import { User } from '../../../model/model';
 
-/**
- * AUTH STATE SHAPE
- */
+
+
+const getInitialUser = () => {
+  const saved = localStorage.getItem('user');
+  return saved ? JSON.parse(saved) : null;
+};
 export interface AuthState {
   user: User | null;
   loading: boolean;
@@ -17,7 +20,7 @@ export interface AuthState {
  * INITIAL STATE
  */
 export const initialState: AuthState = {
-  user: null,
+  user: getInitialUser(),
   loading: false,
   error: null,
   token: null,

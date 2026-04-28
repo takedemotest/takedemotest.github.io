@@ -1,14 +1,17 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
-import { FormFieldConfig } from '../../models/form-field-model';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, EventEmitter, input, Input, Output, SimpleChanges } from '@angular/core';
+import { FormButtonConfig, FormFieldConfig } from '../../models/form-field-model';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AiAgentService } from './ai-agent.service';
 import { debounceTime } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { IconService } from '../../../../../../src/app/core/services/icon.service';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'lib-dynamic-form',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule,MatIconModule, MatMenuModule],
   templateUrl: './dynamic-form.component.html',
   styleUrl: './dynamic-form.component.scss',
   changeDetection:ChangeDetectionStrategy.OnPush
@@ -16,11 +19,14 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 export class DynamicFormComponent {
 
   @Input() fields:FormFieldConfig[] =[];
-  @Output() formSubmit = new EventEmitter<any>();
+  @Input() buttonConfig?:FormButtonConfig | undefined;
+  @Input () title?:string;
+    @Input () type?:string;
+  @Output() actionTriggered:EventEmitter<any> = new EventEmitter<{action:string, data:any}>();
 
   form!:FormGroup
 
-  constructor(private fb:FormBuilder, private aiService:AiAgentService, private cdr:ChangeDetectorRef, private destroyRef:DestroyRef){}
+  constructor(private fb:FormBuilder, private aiService:AiAgentService,private iconService: IconService,  private cdr:ChangeDetectorRef, private destroyRef:DestroyRef){}
   ngOnInit(){
     this.createForm();
     this.form.valueChanges.pipe(
@@ -79,9 +85,15 @@ export class DynamicFormComponent {
     })
   }
 
-  submit(){
+  handleAction(actionName:string | undefined){
+    if (!actionName) return;
     if(this.form.value){
-      this.formSubmit.emit(this.form.value)
+      this.actionTriggered.emit(
+        {
+        action: actionName, 
+        data: this.form.value
+      }
+      );
     }else{
       this.form.markAllAsTouched();
     }

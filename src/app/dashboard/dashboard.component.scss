@@ -1,59 +1,80 @@
-header{
-    background:var(--sub-bg-color);
-  display:flex;
+header {
+  background: var(--main-bg-color);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  padding:15px 10px;
-  .header-nav{
-    a{
-      color:var(--text-color);
+  padding: 15px 10px;
+
+  .header-nav {
+    a {
+      color: var(--main-text-color);
     }
   }
 }
-.search{
-  display:flex;
-  justify-content:end;
+
+.search {
+  display: flex;
+  justify-content: end;
   align-items: center;
-  padding:5px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+ padding-right:15px;
+  &:focus-within {
+    border-color: var(--main-text-color);
+  }
+
+  .mat-icon {
+    height: 28px;
+    width: 16px;
+  }
 }
+
 .card-container-flex {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
-}
-.dynamic-form{
-  display:grid;
-  grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));
+  padding: 15px;
 }
 
-.charts{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:30px;
+.dynamic-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
-.chart{
-background:white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 2px 6px rgba(0,0,0,0.1);
+.charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.box {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+  .user {
+    text-transform: capitalize;
+  }
 }
 
 app-chart {
   display: block;
   width: 100%;
 }
-.box{
- .table{
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    font-size:14px;
-    tr:last-child{
-   td{
-       border:none; 
-   } 
- }
-}
+
+.box {
+  .table {
+    font-size: 14px;
+
+    tr:last-child {
+      td {
+        border: none;
+      }
+    }
+  }
 }
 
 .layout {
@@ -61,37 +82,26 @@ app-chart {
   grid-template-columns: 2fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 15px;
-  padding:15px;
+  padding: 15px;
 }
 
-.table-header{
-  display:flex;
+.table-header {
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom:10px;
-  .table-actions{
-    display:flex;
-    gap:10px;
+  margin-bottom: 10px;
+
+  .table-actions {
+    display: flex;
+    gap: 10px;
   }
-  .table-title{
-    font-size:1.2em;
-    font-weight:bold;
+
+  .table-title {
+    font-size: 1.2em;
+    font-weight: bold;
   }
 }
 
-.box-left {
-  grid-row: 1 / 3;
-}
-
-.box-top-right {
-  grid-column: 2;
-  grid-row: 1;
-}
-
-.box-bottom-right {
-  grid-column: 2;
-  grid-row: 2;
-}
 
 @media (max-width: 1024px) {
   .layout {
@@ -125,51 +135,62 @@ app-chart {
     min-height: 180px;
   }
 }
-.main-container{
-  display:grid;
+
+.main-container {
+  display: grid;
   grid-template-columns: 250px 1fr;
-  min-height:100vh;
-  min-height:100dvh;
-  .sidebar{
-    background:var(--main-bg-color);
-    color:white;
-    padding:0 20px 20px;
-    position:sticky;
-    top:0;
-    .nav{
-      li{
-        &:hover{
-        background:var(--sub-bg-color);
-        border-radius:3px;
-      }
-      a{
-        display:flex;
-        align-items: center;
-        gap:10px;
-        .mat-icon{
-          width:20px;
-          height:24px;
-          ::ng-deep svg{
-            fill:white;
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  .sidebar {
+    background: var(--main-bg-color);
+    border-right: 1px solid var(--border-color);
+    color: white;
+    padding: 0 20px 20px;
+    position: sticky;
+    top: 0;
+
+    .nav {
+      li {
+        &:hover {
+          background: var(--main-bg-color);
+          border-radius: 3px;
+        }
+
+        a {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          color: var(--main-text-color);
+
+          .mat-icon {
+            width: 20px;
+            height: 24px;
+
+            ::ng-deep svg {
+              fill: var(--icon-color);
+            }
           }
         }
       }
-      }
-        .logo{
-      text-align: center;
-      font-size:1.5em;
-      font-weight:bold;
-      margin-bottom:20px;
-     a{
-       .mat-icon{
-        width:30px;
-        height:36px;
-        ::ng-deep svg{
-          fill:white;
+
+      .logo {
+        text-align: center;
+        font-size: 1.5em;
+        font-weight: bold;
+        margin-bottom: 20px;
+
+        a {
+          .mat-icon {
+            width: 30px;
+            height: 36px;
+
+            ::ng-deep svg {
+              fill: white;
+            }
+          }
         }
       }
-     }
-    }
     }
   }
 }

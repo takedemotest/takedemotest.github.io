@@ -48,7 +48,7 @@ export class AuthEffects {
             of(LOGIN_FAILURE({ error }))
           )
         )
-      )
+      ),
     ),
     {dispatch:true}
   );
@@ -56,8 +56,8 @@ export class AuthEffects {
     () =>
       this.actions$.pipe(
         ofType(LOGIN_SUCCESS),
-        tap(() => {
-        console.log('Login successful, navigating to dashboard...');
+        tap(({user}) => {
+        localStorage.setItem('user', JSON.stringify(user));
         this.router.navigate(['/dashboard']);
         })
       ),

@@ -1,9 +1,22 @@
 :root {
-  --main-bg-color: #567973;
-  --sub-bg-color: #a2c1bd;
-  --main-text-color: #2d2930;
-  --sub-text-color: #bbbaba;
+  --main-bg-color: #ffffff;
+  --sub-bg-color: #f9fafb;
+  --main-text-color: #567973;
+  --sub-text-color: #a2c1bd;
   --icon-color:#acd1cc;
+  --border-color:#d8eeeb;
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: "Noto Sans", sans-serif; }
+main{
+  background:var(--sub-bg-color);
+}
+
+.text-primary-color{
+  color: var(--main-text-color);
+}
+
+/*error color*/
+.error-text{
+  color: red;
+}
