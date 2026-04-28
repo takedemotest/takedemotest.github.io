@@ -47,13 +47,13 @@ private BASE_URL = `${environment.apiUrl}`;
 
   updateAnimal(animal:any){
     return this.http.put<any>(
-      `${this.BASE_URL}/${animal._id}`, animal
+      `${this.BASE_URL}/animals/${animal.id}`, animal
     )
   }
 
   deleteAnimal(id:string){
     return this.http.delete<any>(
-      `${this.BASE_URL}/${id}`
+      `${this.BASE_URL}/animals/${id}`
     )
   }
 

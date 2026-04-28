@@ -1,4 +1,4 @@
-export type InputType = 'text' | 'email' | 'password' | 'date' | 'select' | 'textarea' | 'checkbox' | 'radio'
+export type InputType = 'text' | 'email' | 'number' | 'password' | 'date' | 'select' | 'textarea' | 'checkbox' | 'radio'
 
 export interface FormFieldConfig {
     type:InputType;
@@ -17,7 +17,7 @@ export interface FormButtonConfig{
     action:string;
     type?: 'button'| 'submit';
     icon?:string;
-    styleCss?:string;
+    cssClass?:string;
     dropdown?:boolean;
     dropdownItem?:{
        label?:string;
@@ -25,4 +25,11 @@ export interface FormButtonConfig{
        icon?:string; 
     }[];
     disabled?:boolean;
+}
+
+export interface FormConfig{
+    title?:string;
+    type?: 'inline'| 'block';
+    fields:FormFieldConfig[];
+    buttonConfig:FormButtonConfig;
 }

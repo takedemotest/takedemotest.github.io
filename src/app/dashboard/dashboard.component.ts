@@ -30,7 +30,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms'
 import { DiaryDataComponent } from '../commonComponents/dairy-data/diary-data.component'
 import { UsermodelService } from '../commonComponents/add-user/usermodel.service'
 import { DynamicFormComponent } from '../../../projects/shared-ui/src/lib/components/dynamic-form/dynamic-form.component'
-import { FormFieldConfig } from '../../../projects/shared-ui/src/lib/models/form-field-model'
+import { FormConfig, FormFieldConfig } from '../../../projects/shared-ui/src/lib/models/form-field-model'
 import { ApiService } from '../core/services/api.service'
 import { Task } from '../model/model'
 import { LOAD_STATS } from '../global/store/dashboard/dashboard.actions'
@@ -40,9 +40,11 @@ import { ChartComponent } from '../../../projects/shared-ui/src/lib/components/c
 import { MatIconModule } from '@angular/material/icon'
 import { IconService } from '../core/services/icon.service'
 import { AnimalService } from '../core/services/animal.service'
-import { loadAnimals } from '../global/store/animal/animal.actions'
+import { addAnimal, deleteAnimal, loadAnimals, updateAnimal } from '../global/store/animal/animal.actions'
 import { Animal } from '../global/store/animal/animal.model'
 import { selectAnimals } from '../global/store/animal/animal.selectors'
+import { FormRegisterService } from '../core/services/form-register.service'
+import { selectUser } from '../global/store/auth/auth.selectors'
 
 
 @Component({
@@ -72,53 +74,37 @@ export class DashboardComponent {
   lineChartData = signal<ChartConfiguration<'line'>['data'] | null>(null)
   pieChartData!: ChartConfiguration<'pie'>['data']
 
-  userFormFields: FormFieldConfig[] = [
+  addAnimals: FormConfig[] = [
     {
-      type: 'text',
-      name: 'firstName',
-      label: 'First Name',
-      placeholder: 'First Name',
-      required: true,
-      minLength: 3
-    },
-    {
-      type: 'email',
-      name: 'email',
-      label: 'Email',
-      placeholder: 'Email',
-      required: true
-    },
-    {
-      type: 'text',
-      name: 'Number',
-      label: 'Mobile',
-      placeholder: 'Mobile Number',
-      required: true
-    },
-    {
-      type: 'select',
-      name: 'role',
-      label: 'Role',
-      placeholder: 'Role',
-      options: [
-        { label: 'Admin', value: 'admin' },
-        { label: 'User', value: 'user' }
-      ]
+      title: 'Add New Animal',
+      fields: [
+       
+      ],
+      buttonConfig:{label:'Add', action:'addAnimal'}
     }
   ]
 
   private store = inject(Store);
+  private formconfig = inject(FormRegisterService);
 
   animals:any;
   public animals$ = this.store.select(selectAnimals);
   selectedIds = new Set<string>();
+
+  public activePlugin = signal<any>(null);
+
+  user$ = this.store.select(selectUser);
   
 
-  constructor ( private cdr:ChangeDetectorRef,private iconService: IconService, private animalService: AnimalService) {
+  constructor ( private cdr:ChangeDetectorRef,private iconService: IconService, private animalService: AnimalService, ) {
 
   }
 
+  
+
   ngOnInit () {
+    const formConfig:any = this.formconfig.getFormConfig('ANIMAL_FORM');
+    this.activePlugin.set(formConfig);
     this.store.dispatch(LOAD_STATS())
     this.store.select(selectDashboardStates).subscribe(data => {
       if (!data || !data.milkProduction) return;
@@ -149,12 +135,34 @@ export class DashboardComponent {
    this.store.dispatch(loadAnimals()) ;
    this.animals$.subscribe(data=>{
     this.animals = data;
-   })
+   });
+   //this.getUser();
 }
 
+  // getUser(){
+  //   localStorage.setItem('user', JSON.stringify(this.user$));
+  // }
+
   onResultChange (filteredData: any[]) {}
-  handleSubmit () {
-    console.log()
+  handleSubmit (addAnimalData: any) {
+    const formConfig:any = this.formconfig.getFormConfig('ANIMAL_FORM');
+    const animalData = {
+      name: addAnimalData.data.name,
+      age: addAnimalData.data.age,
+      milkProduction: addAnimalData.data.Milk,
+      type: addAnimalData.data.Type,
+      healthStatus: addAnimalData.data['Health Status']
+    }
+      if(formConfig.buttonConfig.label === "Edit") {
+        const editId = Array.from(this.selectedIds)[0];
+        Object.assign(animalData, {id: editId});
+        this.store.dispatch(updateAnimal({ animal: animalData}));
+      }
+      else{
+        this.store.dispatch(addAnimal({ animal: animalData }));
+      }
+      this.selectedIds.clear();
+   
   }
 
     toggleSelection(id: string) { 
@@ -165,7 +173,12 @@ export class DashboardComponent {
       }
     }
 
-  add(){}
+  add(){
+      const formConfig:any = this.formconfig.getFormConfig('ANIMAL_FORM');
+      formConfig.buttonConfig.label = "Add";
+      formConfig.title = "Add Animal";
+      this.selectedIds.clear();
+  }
   delete(){
     const isIdToDelete = Array.from(this.selectedIds);
     if(isIdToDelete.length === 0) {
@@ -174,15 +187,22 @@ export class DashboardComponent {
     }
     if(confirm(`Are you sure you want to delete ${isIdToDelete.length} animals?`)) {
       isIdToDelete.forEach(id => {
-        this.animalService.deleteAnimal(id).subscribe(() => {
-          this.store.dispatch(loadAnimals());
-          this.store.dispatch(LOAD_STATS());
-        });
+        this.store.dispatch(deleteAnimal({ id })); 
       });
     }
     this.selectedIds.clear();
   }
-  edit(){}
+  edit(){
+    if(this.selectedIds.size < 1) {
+      alert("Please select exactly one animal to edit.");
+      return;
+    }
+    if(confirm(`Are you sure you want to edit this animal?`)) {
+      const formConfig:any = this.formconfig.getFormConfig('ANIMAL_FORM');
+      formConfig.buttonConfig.label = "Edit";
+      formConfig.title = "Edit Animal";
+    }
+  }
 
   logout () {
     this.store.dispatch(LOGOUT())
