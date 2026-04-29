@@ -18,9 +18,9 @@ header {
   justify-content: end;
   align-items: center;
   padding: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border-color);
   border-radius: 15px;
- padding-right:15px;
+  padding-right: 15px;
   &:focus-within {
     border-color: var(--main-text-color);
   }
@@ -50,7 +50,7 @@ header {
 }
 
 .box {
-  background: white;
+  background: var(--main-bg-color);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
@@ -102,7 +102,6 @@ app-chart {
   }
 }
 
-
 @media (max-width: 1024px) {
   .layout {
     grid-template-columns: 1fr;
@@ -141,22 +140,71 @@ app-chart {
   grid-template-columns: 250px 1fr;
   min-height: 100vh;
   min-height: 100dvh;
+  &.close-sidebar{
+    grid-template-columns: 80px 1fr;
+    .sidebar{
+      width:45px;
+      overflow: hidden;
+      text-wrap: nowrap;
+    }
+  }
 
+  .top-header{
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      .letf-div{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+  }
+  nav {
+    border-right: 1px solid var(--border-color);
+  }
   .sidebar {
     background: var(--main-bg-color);
-    border-right: 1px solid var(--border-color);
-    color: white;
-    padding: 0 20px 20px;
+    color: var(--sub-text-color);
     position: sticky;
     top: 0;
 
     .nav {
-      li {
-        &:hover {
-          background: var(--main-bg-color);
-          border-radius: 3px;
+      .logo {
+        a {
+          background: none !important;
         }
+      }
+      li {
+        .sub-menu {
+          display: grid;
+          transition: 300ms ease-in-out;
+          grid-template-rows: 0fr;
 
+          a {
+            padding: 5px 10px;
+            color: var(--sub-text-color);
+            &:hover {
+              background: var(--hover-lite-bg-color);
+              border-radius: 3px;
+              color: var(--main-text-color);
+            }
+          }
+          div {
+            overflow: hidden;
+          }
+        }
+        &:hover {
+          a {
+            color: var(--sub-text-color);
+            &:hover {
+              background: var(--hover-bg-color);
+              border-radius: 3px;
+            }
+          }
+          .sub-menu {
+            grid-template-rows: 1fr;
+          }
+        }
         a {
           display: flex;
           align-items: center;
@@ -173,13 +221,11 @@ app-chart {
           }
         }
       }
-
       .logo {
         text-align: center;
         font-size: 1.5em;
         font-weight: bold;
         margin-bottom: 20px;
-
         a {
           .mat-icon {
             width: 30px;
@@ -187,6 +233,7 @@ app-chart {
 
             ::ng-deep svg {
               fill: white;
+              flex-shrink: 0px;
             }
           }
         }

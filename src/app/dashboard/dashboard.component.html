@@ -1,57 +1,65 @@
-<div class="main-container">
-  <nav class="sidebar">
-    <div class="position-sticky pt-3">
+<div class="main-container" [ngClass]="{'close-sidebar': isOpen}">
+  <nav>
+    <div class="sidebar">
       <ul class="nav flex-column">
         <li class="nav-item logo">
           <a class="nav-link" href="#"><mat-icon svgIcon="logo"></mat-icon>KRISHITO</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Dashboard</a>
+          <a class="nav-link" href="#"><mat-icon svgIcon="dashboard"></mat-icon>Dashboard</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Users</a>
+          <a class="nav-link" href="#"><mat-icon svgIcon="dashboard"></mat-icon>Users</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Reports</a>
+          <a class="nav-link" href="#"><mat-icon svgIcon="report"></mat-icon>Reports</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Manage Your Products</a>
-          <ul>
-            <li><a href="">Buy</a></li>
+          <a class="nav-link" href="#"><mat-icon svgIcon="market"></mat-icon>Market Place</a>
+          <ul class="sub-menu">
+           <div>
+             <li><a href="">Buy</a></li>
             <li><a href="">Sell</a></li>
+           </div>
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="logout()" href="#"><mat-icon svgIcon="register"></mat-icon>logout</a>
+          <a class="nav-link" href="#"><mat-icon svgIcon="dashboard"></mat-icon>Contact</a>
         </li>
       </ul>
-    </div>
+   </div>
   </nav>
   <main class="">
-    <header>
+     <div class="top-header">
+      <header>
+        <div class="letf-div">
+        <div class="collasp-sidenav">
+          <button class="btn btn-light" (click)="toggleSidebar()">
+            <mat-icon svgIcon="menu"></mat-icon>
+          </button>
+        </div>
       <div class="search">
-
           <app-search (resultChange)="onResultChange($event)"></app-search>
           <mat-icon svgIcon="search"></mat-icon>
-    
-      </div>
+      </div></div>
       <div class="">
         <ul class="nav header-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#">Notification</a>
+            <a class="nav-link" href="#"><mat-icon svgIcon="notification"></mat-icon></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Help</a>
+            <a class="nav-link" href="#"><mat-icon svgIcon="help"></mat-icon></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Profile</a>
+            <a class="nav-link" href="#"><mat-icon svgIcon="profile"></mat-icon></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" (click)="logout()" href="#">logout</a>
+            <a class="nav-link" (click)="logout()" href="#"><mat-icon svgIcon="logout"></mat-icon></a>
           </li>
         </ul>
       </div>
     </header>
+  </div>
     <div class="card-container-flex">
       <div class="box">
         @if (user$ | async; as user) {

@@ -45,8 +45,6 @@ import { Animal } from '../global/store/animal/animal.model'
 import { selectAnimals } from '../global/store/animal/animal.selectors'
 import { FormRegisterService } from '../core/services/form-register.service'
 import { selectUser } from '../global/store/auth/auth.selectors'
-
-
 @Component({
   standalone: true,
   selector: 'app-dashboard',
@@ -94,13 +92,11 @@ export class DashboardComponent {
   public activePlugin = signal<any>(null);
 
   user$ = this.store.select(selectUser);
-  
+  isOpen = false;
 
   constructor ( private cdr:ChangeDetectorRef,private iconService: IconService, private animalService: AnimalService, ) {
 
   }
-
-  
 
   ngOnInit () {
     const formConfig:any = this.formconfig.getFormConfig('ANIMAL_FORM');
@@ -136,12 +132,11 @@ export class DashboardComponent {
    this.animals$.subscribe(data=>{
     this.animals = data;
    });
-   //this.getUser();
 }
 
-  // getUser(){
-  //   localStorage.setItem('user', JSON.stringify(this.user$));
-  // }
+toggleSidebar() {
+  this.isOpen = !this.isOpen;
+}
 
   onResultChange (filteredData: any[]) {}
   handleSubmit (addAnimalData: any) {
@@ -162,7 +157,6 @@ export class DashboardComponent {
         this.store.dispatch(addAnimal({ animal: animalData }));
       }
       this.selectedIds.clear();
-   
   }
 
     toggleSelection(id: string) { 
