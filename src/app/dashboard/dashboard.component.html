@@ -63,12 +63,12 @@
           <ul class="nav header-nav">
             <li class="nav-item">
               <a class="nav-link" href="#"
-                ><mat-icon svgIcon="notification"></mat-icon
+                ><mat-icon svgIcon="notification" class="header-icon"></mat-icon
               ></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
-                @if (user$ | async; as user) {<mat-icon
+                @if (user$ | async; as user) {<mat-icon class="header-icon"
                   svgIcon="notification"
                 ></mat-icon>
                 Hello {{ user.name }}}</a
