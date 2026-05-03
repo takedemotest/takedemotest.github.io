@@ -45,6 +45,7 @@ import { Animal } from '../global/store/animal/animal.model'
 import { selectAnimals } from '../global/store/animal/animal.selectors'
 import { FormRegisterService } from '../core/services/form-register.service'
 import { selectUser } from '../global/store/auth/auth.selectors'
+import { ResponsiveService } from '../core/services/responsive-service.service'
 @Component({
   standalone: true,
   selector: 'app-dashboard',
@@ -94,7 +95,7 @@ export class DashboardComponent {
   user$ = this.store.select(selectUser);
   isOpen = false;
 
-  constructor ( private cdr:ChangeDetectorRef,private iconService: IconService, private animalService: AnimalService, ) {
+  constructor ( private cdr:ChangeDetectorRef,private iconService: IconService, private animalService: AnimalService, public responsive:ResponsiveService) {
 
   }
 

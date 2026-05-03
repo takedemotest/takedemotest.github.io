@@ -1,81 +1,132 @@
-<div class="main-container" [ngClass]="{'close-sidebar': isOpen}">
+<div
+  class="main-container"
+  [ngClass]="{ 'close-sidebar': isOpen }"
+  [class.close-sidebar]="responsive.isMobile()"
+>
   <nav>
     <div class="sidebar">
       <ul class="nav flex-column">
         <li class="nav-item logo">
-          <a class="nav-link" href="#"><mat-icon svgIcon="logo"></mat-icon>KRISHITO</a>
+          <a class="nav-link" href="#"
+            ><mat-icon svgIcon="logo"></mat-icon>KRISHITO</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><mat-icon svgIcon="dashboard"></mat-icon>Dashboard</a>
+          <a class="nav-link" href="#"
+            ><mat-icon svgIcon="dashboard"></mat-icon>Dashboard</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><mat-icon svgIcon="dashboard"></mat-icon>Users</a>
+          <a class="nav-link" href="#"
+            ><mat-icon svgIcon="dashboard"></mat-icon>Users</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><mat-icon svgIcon="report"></mat-icon>Reports</a>
+          <a class="nav-link" href="#"
+            ><mat-icon svgIcon="report"></mat-icon>Reports</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><mat-icon svgIcon="market"></mat-icon>Market Place</a>
+          <a class="nav-link" href="#"
+            ><mat-icon svgIcon="market"></mat-icon>Market Place</a
+          >
           <ul class="sub-menu">
-           <div>
-             <li><a href="">Buy</a></li>
-            <li><a href="">Sell</a></li>
-           </div>
+            <div>
+              <li><a href="">Buy</a></li>
+              <li><a href="">Sell</a></li>
+            </div>
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><mat-icon svgIcon="dashboard"></mat-icon>Contact</a>
+          <a class="nav-link" href="#"
+            ><mat-icon svgIcon="dashboard"></mat-icon>Contact</a
+          >
         </li>
       </ul>
-   </div>
+    </div>
   </nav>
   <main class="">
-     <div class="top-header">
+    <div class="top-header">
       <header>
         <div class="letf-div">
-        <div class="collasp-sidenav">
-          <button class="btn btn-light" (click)="toggleSidebar()">
-            <mat-icon svgIcon="menu"></mat-icon>
-          </button>
+          <div class="collasp-sidenav">
+            <button class="btn btn-light" (click)="toggleSidebar()">
+              <mat-icon svgIcon="menu"></mat-icon>
+            </button>
+          </div>
+          <div class="search">
+            <app-search (resultChange)="onResultChange($event)"></app-search>
+            <mat-icon svgIcon="search"></mat-icon>
+          </div>
         </div>
-      <div class="search">
-          <app-search (resultChange)="onResultChange($event)"></app-search>
-          <mat-icon svgIcon="search"></mat-icon>
-      </div></div>
-      <div class="">
-        <ul class="nav header-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="#"><mat-icon svgIcon="notification"></mat-icon></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"><mat-icon svgIcon="help"></mat-icon></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"><mat-icon svgIcon="profile"></mat-icon></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" (click)="logout()" href="#"><mat-icon svgIcon="logout"></mat-icon></a>
-          </li>
-        </ul>
-      </div>
-    </header>
-  </div>
+        <div class="">
+          <ul class="nav header-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#"
+                ><mat-icon svgIcon="notification"></mat-icon
+              ></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                @if (user$ | async; as user) {<mat-icon
+                  svgIcon="notification"
+                ></mat-icon>
+                Hello {{ user.name }}}</a
+              >
+
+              <ul class="sub-menu">
+                <div>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#"
+                      ><mat-icon svgIcon="profile"></mat-icon>Edit Profile</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#"
+                      ><mat-icon svgIcon="help"></mat-icon> Support</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#"
+                      ><mat-icon svgIcon="setting"></mat-icon>Setting</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" (click)="logout()" href="#"
+                      ><mat-icon svgIcon="logout"></mat-icon> Logout</a
+                    >
+                  </li>
+                </div>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </header>
+    </div>
     <div class="card-container-flex">
       <div class="box">
         @if (user$ | async; as user) {
-        <h2 class="user">Welcome to the Dashboard, <span class="text-primary-color">{{ user.name }}</span></h2>}
+        <h2 class="user">
+          Welcome to the Dashboard,
+          <span class="text-primary-color">{{ user.name }}</span>
+        </h2>
+        }
       </div>
     </div>
     <div class="card-container-flex">
       @if (activePlugin(); as plugin) {
-      <lib-dynamic-form [fields]="plugin.fields" [buttonConfig]="plugin.buttonConfig" [title]="plugin.title"
-        [type]="plugin.type" (actionTriggered)="handleSubmit($event)">
+      <lib-dynamic-form
+        [fields]="plugin.fields"
+        [buttonConfig]="plugin.buttonConfig"
+        [title]="plugin.title"
+        [type]="plugin.type"
+        (actionTriggered)="handleSubmit($event)"
+      >
       </lib-dynamic-form>
 
       } @else {
       <p>Loading plugin configuration...</p>
       }
-
     </div>
     <div class="layout">
       <div class="box">
@@ -101,7 +152,11 @@
           <tbody>
             <tr *ngFor="let animal of animals$ | async; let i = index">
               <td class="highlight">
-                <input type="checkbox" [checked]="selectedIds.has(animal._id)" (change)="toggleSelection(animal._id)" />
+                <input
+                  type="checkbox"
+                  [checked]="selectedIds.has(animal._id)"
+                  (change)="toggleSelection(animal._id)"
+                />
               </td>
               <td class="highlight">{{ animal.name }}</td>
               <td>{{ animal.age }}</td>
