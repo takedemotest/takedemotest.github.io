@@ -5,7 +5,8 @@ import { of } from 'rxjs';
 import { ApiService } from '../../../core/services/api.service';
 import { LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT, REGISTER, REGISTER_SUCCESS } from './auth.actions';
 import { Router } from '@angular/router';
-import * as AuthActions from '../auth/auth.actions'
+import * as AuthActions from '../auth/auth.actions';
+import { jwtDecode } from 'jwt-decode';
 @Injectable()
 export class AuthEffects {
     private actions$= inject(Actions)
@@ -41,7 +42,7 @@ export class AuthEffects {
               name: response.name,
               email: response.email
               },
-              token:response.token
+              token:response.token,  
           });
         }),
           catchError(error =>

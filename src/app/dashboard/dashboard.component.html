@@ -3,48 +3,16 @@
   [ngClass]="{ 'close-sidebar': isOpen }"
   [class.close-sidebar]="responsive.isMobile()"
 >
-  <nav>
+
     <div class="sidebar">
-      <ul class="nav flex-column">
-        <li class="nav-item logo">
-          <a class="nav-link" href="#"
-            ><mat-icon svgIcon="logo"></mat-icon>KRISHITO</a
-          >
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"
-            ><mat-icon svgIcon="dashboard"></mat-icon>Dashboard</a
-          >
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"
-            ><mat-icon svgIcon="dashboard"></mat-icon>Users</a
-          >
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"
-            ><mat-icon svgIcon="report"></mat-icon>Reports</a
-          >
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"
-            ><mat-icon svgIcon="market"></mat-icon>Market Place</a
-          >
-          <ul class="sub-menu">
-            <div>
-              <li><a href="">Buy</a></li>
-              <li><a href="">Sell</a></li>
-            </div>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"
-            ><mat-icon svgIcon="dashboard"></mat-icon>Contact</a
-          >
-        </li>
-      </ul>
+    <div class="sidebar__container">
+    <div class="brand-name">
+       <a class="" ><mat-icon svgIcon="logo"></mat-icon>KRISHITO</a>
     </div>
-  </nav>
+     <navigation-menu layoutKey="sidebar-menu"></navigation-menu>
+    </div>
+    </div>
+
   <main class="">
     <div class="top-header">
       <header>
@@ -76,26 +44,7 @@
 
               <ul class="sub-menu">
                 <div>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#"
-                      ><mat-icon svgIcon="profile"></mat-icon>Edit Profile</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#"
-                      ><mat-icon svgIcon="help"></mat-icon> Support</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#"
-                      ><mat-icon svgIcon="setting"></mat-icon>Setting</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" (click)="logout()" href="#"
-                      ><mat-icon svgIcon="logout"></mat-icon> Logout</a
-                    >
-                  </li>
+                     <navigation-menu layoutKey="profile-menu"></navigation-menu>
                 </div>
               </ul>
             </li>
@@ -103,31 +52,14 @@
         </div>
       </header>
     </div>
-    <div class="card-container-flex">
-      <div class="box">
-        @if (user$ | async; as user) {
-        <h2 class="user">
-          Welcome to the Dashboard,
-          <span class="text-primary-color">{{ user.name }}</span>
-        </h2>
-        }
-      </div>
-    </div>
-    <div class="card-container-flex">
-      @if (activePlugin(); as plugin) {
-      <lib-dynamic-form
-        [fields]="plugin.fields"
-        [buttonConfig]="plugin.buttonConfig"
-        [title]="plugin.title"
-        [type]="plugin.type"
-        (actionTriggered)="handleSubmit($event)"
-      >
-      </lib-dynamic-form>
 
-      } @else {
-      <p>Loading plugin configuration...</p>
-      }
-    </div>
+    <div class="action-card">
+        <div class="action-card-container">
+            <cards cardTitle="Quick Action" type="inline" [config]="quickActions()" (cardAction)="handleQuickAction($event)">
+            </cards> 
+        </div>
+  </div>
+   
     <div class="layout">
       <div class="box">
         <div class="table-header">
@@ -184,3 +116,44 @@
     </div>
   </main>
 </div>
+
+  <slider-drawer title="{{sliderTitle}} livestock" position="right" width="500px" [(isOpen)]="isAnimalOpen">
+       <div class="card-container-flex">
+      @if (activePlugin(); as plugin) {
+      <lib-dynamic-form
+        [fields]="plugin.fields"
+        [buttonConfig]="plugin.buttonConfig"
+        [type]="plugin.type"
+        [initialData]="selectedAnimalData"
+        (actionTriggered)="handleSubmit($event)"
+      >
+      </lib-dynamic-form>
+      } @else {
+      <p>Loading plugin configuration...</p>
+      }
+    </div>
+    </slider-drawer>
+
+
+  <slider-drawer title="{{sliderTitle}}" position="right" width="500px" [(isOpen)]="isRecentActivity">
+       <div class="card-container-flex">
+      @if (recentAcitivitySignal(); as plugin) {
+      <lib-dynamic-form
+        [fields]="plugin.fields"
+        [buttonConfig]="plugin.buttonConfig"
+        [type]="plugin.type"
+        [initialData]="activityData"
+        (actionTriggered)="handleActivitySubmit($event)"
+      >
+      </lib-dynamic-form>
+      } @else {
+      <p>Loading plugin configuration...</p>
+      }
+    </div>
+    </slider-drawer>
+
+
+    <ng-template #customInvoice let-item>
+          <span>tesing
+          </span>
+    </ng-template>

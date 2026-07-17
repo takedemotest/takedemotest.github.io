@@ -4,23 +4,23 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 10px;
+  padding:5px 10px;
 
   .header-nav {
     .mat-icon {
       height: 26px;
       &.header-icon{
-        height: 40px;
+        height: 24px;
+        width: 24px;
         border: 1px solid #ccc;
         padding: 0px;
-        width: 40px;
         display: flex;
         align-items: center;
         justify-content: center;
         border-radius: 50%;
         ::ng-deep svg{
-          width:24px;
-          height:24px;
+          width:14px;
+          height:14px;
         }
       }
     }
@@ -29,6 +29,7 @@ header {
       display: flex;
       align-items: center;
       gap: 10px;
+      padding:0 5px;
     }
     .nav-item {
       position: relative;
@@ -37,7 +38,7 @@ header {
         border-radius: 5px;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         position: absolute;
-        top: 50px;
+        top:34px;
         right: 0px;
         display: grid;
         transition: 300ms ease-in-out;
@@ -45,6 +46,17 @@ header {
         grid-template-columns: minmax(200px, 1fr);
         div {
           overflow: hidden;
+          ::ng-deep li{
+            padding: 5px 10px;
+            a{
+              font-size:12px;
+            }
+            .mat-icon{
+              &.header-icon{
+                  border:none;
+              }
+            }
+          }
         }
       }
       &:hover {
@@ -56,14 +68,24 @@ header {
   }
 }
 
+.collasp-sidenav{
+  .btn{
+    padding:0 3px;
+  }
+}
+
 .search {
   display: flex;
   justify-content: end;
   align-items: center;
-  padding: 5px;
+  padding:0px 5px;
   border: 1px solid var(--border-color);
   border-radius: 15px;
   padding-right: 15px;
+  app-search{
+    display:flex;
+    align-items:center;
+  }
   &:focus-within {
     border-color: var(--main-text-color);
   }
@@ -72,6 +94,10 @@ header {
     height: 28px;
     width: 16px;
   }
+}
+
+.action-card{
+  padding:15px;
 }
 
 .card-container-flex {
@@ -173,12 +199,22 @@ app-chart {
   &.close-sidebar {
     grid-template-columns: 80px 1fr;
     .sidebar {
-      .nav {
+      .brand-name{
+        a{
+          font-size:0px;
+          gap:0px;
+             justify-content: center;
+        }
+      }
+      ::ng-deep nav {
+        .menu-category{
+          font-size: 0px;
+        }
         li {
           a {
             gap: 0px;
             padding: 10px 0px;
-            width: 80px;
+            width: auto;
             font-size: 0px;
             .mat-icon {
               margin: 0 auto;
@@ -207,6 +243,31 @@ app-chart {
     color: var(--sub-text-color);
     position: sticky;
     top: 0;
+    border-right: 1px solid var(--border-color);
+    padding:0px 15px;
+
+    &__container{
+      position:sticky;
+      top:0px;
+      ::ng-deep nav{
+        height:calc(100vh - 50px);
+        overflow-y:auto;
+      }
+    }
+
+    .brand-name{
+      margin-bottom:15px;
+      a{
+        display:flex;
+        align-items: center;
+        gap:5px;
+        padding:5px 0px;
+        .mat-icon{
+          width: 34px;
+          height: 34px;
+        }
+      }
+    }
 
     .nav {
       .logo {

@@ -12,11 +12,22 @@ exports.getAnimals = async(request, reply)=>{
 }
 
 exports.createAnimals = async(request, reply)=>{
-      const createAnimal = await Animal.create(request.body)
-      return createAnimal
+    try{
+      const createAnimal = await Animal.create(request.body);
+      await Activity.create({
+        title: 'Animal Created',
+        description: `Animal ${createAnimal.name} has been created`,
+        category: 'Animal',
+      })
+      return createAnimal;
+    }
+    catch(error){
+        reply.status(500).send({message: 'Error creating animal', error: error.message})
+    }
 }
 
 exports.updateAnimals = async(request, reply)=>{
+    try{
     const {id} = request.params
     const updateAnimal = await Animal.findByIdAndUpdate(
         id,
@@ -26,7 +37,16 @@ exports.updateAnimals = async(request, reply)=>{
     if(!updateAnimal){
         return reply.status(404).send({message: 'Animal not found'})
     }
+    await Activity.create({
+        title: 'Animal Updated',
+        description: `Animal ${updateAnimal.name} has been updated`,
+        category: 'Animal',
+      })
     return updateAnimal
+}
+catch(error){
+    reply.status(500).send({message: 'Error updating animal', error: error.message})
+}
 }
 
 exports.deleteAnimals = async(request, reply)=>{
@@ -35,5 +55,10 @@ exports.deleteAnimals = async(request, reply)=>{
     if(!deleteAnimal){
         return reply.status(404).send({message: 'Animal not found'})
     }
+    await Activity.create({
+        title: 'Animal Deleted',
+        description: `Animal ${deleteAnimal.name} has been deleted`,
+        category: 'Animal',
+      })
     return {message: 'Animal deleted'}
 }

@@ -24,7 +24,7 @@ exports.register = async(request, reply)=>{
         password:hasPassword
     })
 
-    reply.code(201).send({message: "user register sucessfully fdfsfs"})}
+    reply.code(201).send({message: "user register sucessfully, Please login to continue..."})}
             catch (error) {
             reply.code(500).send({ message: "Server error" });
         }

@@ -33,11 +33,5 @@ export const appConfig: ApplicationConfig = {
 
     provideZoneChangeDetection({ eventCoalescing: true }),
     importProvidersFrom(MatIconModule),
-    {
-      provide: APP_INITIALIZER,
-     useFactory: (iconService: IconService) => () => iconService.registerIcons(),
-  deps: [IconService], // <--- Now it depends on your Service
-      multi: true,
-    },
   ]
 };

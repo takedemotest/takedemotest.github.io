@@ -21,6 +21,10 @@ fastify.register(require('./routes/animal.routes'), {
     prefix: '/api'
 })
 
+fastify.register(require('./routes/activity.routes'), {
+    prefix: '/api'
+})
+
 
 const start = async() =>{
     try{
