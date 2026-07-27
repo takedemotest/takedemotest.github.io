@@ -6,13 +6,6 @@ export const CORE_SVG_ICONS:string[]=[
   'reset', 
   'creator', 
   'utilizer', 
-  'search', 
-  'menu',
-  'logout', 
-  'profile', 
-  'setting', 
-  'notification', 
-  'help', 
   'report', 
   'market'
 ]

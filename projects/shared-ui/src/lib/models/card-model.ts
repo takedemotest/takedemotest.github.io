@@ -20,7 +20,7 @@ export interface CardConfig{
     progress?:number;
     hasBodyContent?:TemplateRef<any>;
     body?:string;
-    showFooter:boolean;
+    showFooter?:boolean;
     footerActions?:CardFooterAction[];
     icon?:string;
     cssClass?:string;

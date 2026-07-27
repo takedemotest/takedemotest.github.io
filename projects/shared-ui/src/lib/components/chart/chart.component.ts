@@ -1,14 +1,13 @@
-
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
 import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
 @Component({
   selector: 'app-chart',
-  imports: [BaseChartDirective],
+  imports: [BaseChartDirective, CommonModule],
   templateUrl: './chart.component.html',
   styleUrl: './chart.component.scss',
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true
 })
 export class ChartComponent {

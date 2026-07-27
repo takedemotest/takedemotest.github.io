@@ -1,0 +1,7 @@
+<div class="main-container" [ngClass]="{ 'close-sidebar': isOpen }">
+    <sidebar></sidebar>
+    <main>
+        <top-header (toggleSidebar)="isOpen = !isOpen"></top-header>
+        <router-outlet />
+    </main>
+</div>

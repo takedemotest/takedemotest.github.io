@@ -1,0 +1,101 @@
+ <div class="main_section">
+      <div class="action-card">
+        <div class="action-card-container">
+          <cards cardTitle="Quick Action" [config]="quickActions()"
+            (cardAction)="handleQuickAction($event)">
+          </cards>
+        </div>
+      </div>
+      <div class="task-notification-card">
+        <div class="action-card-container">
+          <cards type="inline" [config]="taskNotification()">
+          </cards>
+        </div>
+      </div>
+      <div class="layout">
+        <div class="box">
+          <div class="table-header">
+            <div class="table-title">Animal List</div>
+            <div class="table-actions">
+              <button class="btn btn-primary" (click)="add()">Add</button>
+              <button class="btn btn-secondary" (click)="edit()">Edit</button>
+              <button class="btn btn-danger" (click)="delete()">Delete</button>
+            </div>
+          </div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th><input type="checkbox" #masterCheck /></th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Type</th>
+                <th>Milk</th>
+                <th>Health Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let animal of animals$ | async; let i = index">
+                <td class="highlight">
+                  <input type="checkbox" [checked]="selectedIds.has(animal._id)"
+                    (change)="toggleSelection(animal._id)" />
+                </td>
+                <td class="highlight">{{ animal.name }}</td>
+                <td>{{ animal.age }}</td>
+                <td>{{ animal.type }}</td>
+                <td>{{ animal.milkProduction }}</td>
+                <td>{{ animal.healthStatus }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- <div class="box box-bottom-right">
+          <div class="chart">
+            <h3>Animal Distribution</h3>
+            <app-chart [chartData]="pieChartData" [chartType]="'pie'">
+            </app-chart>
+          </div>
+        </div> -->
+      </div>
+    </div>
+ 
+
+<slider-drawer title="{{sliderTitle}} livestock" position="right" width="500px" [(isOpen)]="isAnimalOpen">
+  <div class="card-container-flex">
+    @if (activePlugin(); as plugin) {
+    <lib-dynamic-form [fields]="plugin.fields" [buttonConfig]="plugin.buttonConfig" [type]="plugin.type"
+      [initialData]="selectedAnimalData" (actionTriggered)="handleSubmit($event)">
+    </lib-dynamic-form>
+    } @else {
+    <p>Loading plugin configuration...</p>
+    }
+  </div>
+</slider-drawer>
+
+<slider-drawer title="{{sliderTitle}}" position="right" width="500px" [(isOpen)]="isRecentActivity">
+  <div class="card-container-flex">
+    @if (recentAcitivitySignal(); as plugin) {
+    <lib-dynamic-form [fields]="plugin.fields" [buttonConfig]="plugin.buttonConfig" [type]="plugin.type"
+      [initialData]="activityData" (actionTriggered)="handleActivitySubmit($event)">
+    </lib-dynamic-form>
+    } @else {
+    <p>Loading plugin configuration...</p>
+    }
+  </div>
+</slider-drawer>
+
+
+<ng-template #milkProduction let-item>
+  <div class="chart">
+            <span>{{ item.milkProduction }} liters</span>
+            <app-chart [chartData]="lineChartData()" chartType="line">
+            </app-chart>
+          </div>
+</ng-template>
+
+<ng-template #inventoryAlerts let-item>
+  <span>Inventory Alerts: {{ item.alerts }} alerts</span>
+</ng-template>
+
+<ng-template #upcomingTasks let-item>
+  <span>Upcoming Tasks: {{ item.tasks }} tasks</span>
+</ng-template>

@@ -23,7 +23,8 @@ export const ANIMAL_CONFIG: FormFieldConfig[] = [
     options: [
       { label: 'Healthy', value: 'Healthy' },
       { label: 'Sick', value: 'Sick' },
-      { label: 'Under Treatment', value: 'Under Treatment' }
+      { label: 'Under Treatment', value: 'Under Treatment' },
+       { label: 'Pregnant', value: 'Pregnant' }
     ]
   }
 ]

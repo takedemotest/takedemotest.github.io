@@ -5,8 +5,14 @@ export const SIDEBAR_NAVIGATION: NavCategory[] = [
     items: [
       { 
         label: 'Dashboard', 
-        icon: 'notification', 
+        icon: 'warning', 
         route: '/dashboard',
+        roleAllowed: ['ADMIN', 'OWNER', 'WORKER']
+      },
+       { 
+        label: 'Tasks', 
+        icon: 'warning', 
+        route: '/task',
         roleAllowed: ['ADMIN', 'OWNER', 'WORKER']
       }
     ]
@@ -14,27 +20,22 @@ export const SIDEBAR_NAVIGATION: NavCategory[] = [
   {
     categoryName: 'FARM OPERATIONS',
     items: [
-      { 
-        label: 'Farms', 
-        icon: 'notification', 
-        route: '/operations/farms',
-        roleAllowed: ['ADMIN', 'OWNER']
-      },
+    
       { 
         label: 'Fields', 
-        icon: 'notification', 
-        route: '/operations/fields',
+        icon: 'warning', 
+        route: '/farmField',
         roleAllowed: ['ADMIN', 'OWNER', 'WORKER']
       },
       { 
         label: 'Crops', 
-        icon: 'notification', 
+        icon: 'warning', 
         route: '/operations/crops',
         roleAllowed: ['ADMIN', 'OWNER', 'WORKER']
       },
       { 
         label: 'Activities', 
-        icon: 'notification', 
+        icon: 'warning', 
         route: '/operations/activities',
         roleAllowed: ['ADMIN', 'OWNER', 'WORKER']
       }
@@ -45,25 +46,25 @@ export const SIDEBAR_NAVIGATION: NavCategory[] = [
     items: [
       { 
         label: 'Animals', 
-        icon: 'notification', 
+        icon: 'warning', 
         route: '/livestock/animals',
         roleAllowed: ['ADMIN', 'OWNER', 'WORKER', 'VET']
       },
       { 
         label: 'Breeding', 
-        icon: 'notification', 
+        icon: 'warning', 
         route: '/livestock/breeding',
         roleAllowed: ['ADMIN', 'OWNER', 'VET']
       },
       { 
         label: 'Health', 
-        icon: 'notification', 
+        icon: 'warning', 
         route: '/livestock/health',
         roleAllowed: ['ADMIN', 'OWNER', 'VET']
       },
       { 
-        label: 'Milk Production', 
-        icon: 'notification', 
+        label: 'Production', 
+        icon: 'warning', 
         route: '/livestock/milk',
         roleAllowed: ['ADMIN', 'OWNER', 'WORKER']
       }
@@ -74,13 +75,13 @@ export const SIDEBAR_NAVIGATION: NavCategory[] = [
     items: [
       { 
         label: 'Feed / Seed', 
-        icon: 'notification', 
+        icon: 'warning', 
         route: '/inventory/feed-seed',
         roleAllowed: ['ADMIN', 'OWNER', 'WORKER']
       },
       { 
         label: 'Fertilizer / Medicine', 
-        icon: 'notification', 
+        icon: 'warning', 
         route: '/inventory/fertilizer-medicine',
         roleAllowed: ['ADMIN', 'OWNER', 'VET']
       }
@@ -91,13 +92,13 @@ export const SIDEBAR_NAVIGATION: NavCategory[] = [
     items: [
       { 
         label: 'Expense / Revenue', 
-        icon: 'notification', 
+        icon: 'warning', 
         route: '/finance/ledger',
         roleAllowed: ['ADMIN', 'OWNER'] // Hidden completely from regular workers
       },
       { 
         label: 'Settings', 
-        icon: 'notification', 
+        icon: 'warning', 
         route: '/settings',
         roleAllowed: ['ADMIN', 'OWNER']
       }

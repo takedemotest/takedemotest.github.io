@@ -12,10 +12,9 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './cards.component.scss'
 })
 export class CardsComponent {
-
-  public iconService = inject(IconService)
+ public iconService = inject(IconService)
  
-  public config = input.required<CardConfig[]>();
+  public cardConfig = input.required<CardConfig[]>({ alias: 'config' });
 
   public type = input<'inline' | 'block'>();
 
@@ -32,6 +31,17 @@ export class CardsComponent {
     return !!element;
   })
   
+ public config = computed(()=>{
+  return this.cardConfig().map(item=>({
+    ...item,
+    randomBg: this.getRandomColour()
+  }))
+ })
+
+ private getRandomColour(): string {  
+  const hue = Math.floor(Math.random() * 360); 
+  return `hsl(${hue}, 70%, 80%)`;
+ }
 
   onClose(event: MouseEvent) {
 
@@ -41,5 +51,4 @@ export class CardsComponent {
     event.stopPropagation();
     this.actions.emit({cardId: this.config()[0].id, actionId: actionId});
   }
-
 }
