@@ -1,5 +1,5 @@
 import { CommonModule, NgTemplateOutlet } from '@angular/common';
-import { Component, computed, ContentChild, contentChild, ElementRef, inject, input, Input, output } from '@angular/core';
+import { Component, computed, ContentChild, contentChild, ElementRef, inject, input, Input, output, ChangeDetectionStrategy } from '@angular/core';
 import { CardConfig } from '../../models/card-model';
 import { IconService } from '../../../../../../src/app/core/services/icon.service';
 import { MatIconModule } from '@angular/material/icon';
@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
   selector: 'cards',
   imports: [CommonModule,MatIconModule,NgTemplateOutlet],
   templateUrl: './cards.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './cards.component.scss'
 })
 export class CardsComponent {

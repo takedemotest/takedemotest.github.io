@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms'
 import { select, Store } from '@ngrx/store';
@@ -11,6 +11,7 @@ import { ANIMAL_CONFIG } from './core/config/animal-form-config';
   selector: 'app-root',
   imports: [RouterOutlet, ReactiveFormsModule],
   templateUrl: './app.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './app.component.scss'
 })
 export class AppComponent {

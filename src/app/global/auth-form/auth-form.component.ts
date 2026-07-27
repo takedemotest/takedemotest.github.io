@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, ChangeDetectionStrategy } from '@angular/core'
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms'
 import { Store } from '@ngrx/store'
 import { LOGIN } from '../store/auth/auth.actions'
@@ -11,6 +11,7 @@ import * as AuthActions from '../store/auth/auth.actions'
   selector: 'app-auth-form',
   imports: [ReactiveFormsModule, RouterModule],
   templateUrl: './auth-form.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './auth-form.component.scss'
 })
 export class AuthFormComponent {

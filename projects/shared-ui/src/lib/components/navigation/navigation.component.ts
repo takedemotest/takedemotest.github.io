@@ -1,5 +1,5 @@
 
-import { Component, computed, inject, input} from "@angular/core";
+import { Component, computed, inject, input, ChangeDetectionStrategy } from "@angular/core";
 import { NavigationService } from "./navigation.service";
 import { MatIconModule } from "@angular/material/icon";
 import { RouterModule } from "@angular/router";
@@ -10,6 +10,7 @@ import { MenuType, NavItem } from "../../models/navigation-model";
     standalone:true,
     imports: [MatIconModule, RouterModule],
     templateUrl:'navigation.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl:'navigation.component.scss'
 })
 

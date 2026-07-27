@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from "@angular/core";
 
 export type DrawerPosition = 'left'|'right'|'top'|'bottom';
 
@@ -8,6 +8,7 @@ export type DrawerPosition = 'left'|'right'|'top'|'bottom';
     standalone:true,
     imports:[CommonModule],
     templateUrl:'slider-drawer.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl:'slider-drawer.component.scss'
 })
 
