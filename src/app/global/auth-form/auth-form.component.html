@@ -1,64 +1,90 @@
 <div class="auth-container vh-100 justify-content-end align-items-center">
-    <div class="splash-img">
-        <img src="../../../assets/krishito.png" alt="flash Screen" class="flash-screen">
-    </div>
-    <div class="auth-form">
-      <div class="card p-4">
+  <div class="splash-img">
+    <img src="../../../assets/krishito.png" alt="flash Screen" class="flash-screen">
+  </div>
+  <div class="auth-form">
+    <div class="card p-4">
       <h2 class="title">
         {{ formConfig.title }}
       </h2>
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <!-- DYNAMIC FIELDS -->
-        <div *ngFor="let field of formConfig.fields" class="form-group">
-          <label>{{ field.label }}</label>
-          <input [type]="field.type" [formControlName]="field.name" class="form-control" />
-          <div class="error" *ngIf="form.get(field.name)?.touched && form.get(field.name)?.invalid">
-                <span *ngIf="form.get(field.name)?.errors?.['required']">
-                  {{ field.label }} is required
-                </span>
-                <span *ngIf="form.get(field.name)?.errors?.['emailInvalid']">
-                  Invalid email format
-                </span>
-
-                <span *ngIf="form.get(field.name)?.errors?.['hasLen']">
-                  Password must be at least 6 characters
-                </span>
-                 <span *ngIf="form.get(field.name)?.errors?.['hasNumber']">
-                  Password must contain a number
-                </span>
-                <span *ngIf="form.get(field.name)?.errors?.['hasSpecial']">
-                   Password must contain a special character
-                </span>
-                <span *ngIf="form.get(field.name)?.errors?.['hasUpperCase']">
-                   Password must contain an uppercase letter
-                </span>
-                   <span *ngIf="form.get(field.name)?.errors?.['notMatching']">
-                  Passwords do not match
-                </span>
-
+        @for (field of formConfig.fields; track field) {
+          <div class="form-group">
+            <label>{{ field.label }}</label>
+            <input [type]="field.type" [formControlName]="field.name" class="form-control" />
+            @if (form.get(field.name)?.touched && form.get(field.name)?.invalid) {
+              <div class="error">
+                @if (form.get(field.name)?.errors?.['required']) {
+                  <span>
+                    {{ field.label }} is required
+                  </span>
+                }
+                @if (form.get(field.name)?.errors?.['emailInvalid']) {
+                  <span>
+                    Invalid email format
+                  </span>
+                }
+                @if (form.get(field.name)?.errors?.['hasLen']) {
+                  <span>
+                    Password must be at least 6 characters
+                  </span>
+                }
+                @if (form.get(field.name)?.errors?.['hasNumber']) {
+                  <span>
+                    Password must contain a number
+                  </span>
+                }
+                @if (form.get(field.name)?.errors?.['hasSpecial']) {
+                  <span>
+                    Password must contain a special character
+                  </span>
+                }
+                @if (form.get(field.name)?.errors?.['hasUpperCase']) {
+                  <span>
+                    Password must contain an uppercase letter
+                  </span>
+                }
+                @if (form.get(field.name)?.errors?.['notMatching']) {
+                  <span>
+                    Passwords do not match
+                  </span>
+                }
               </div>
-        </div>
+            }
+          </div>
+        }
         <!-- SUBMIT BUTTON -->
         <button type="submit" [disabled]="form.invalid || loading" class="btn mt-2">
           {{ formConfig.actionText }}
         </button>
         <!-- LOADING -->
-        <p *ngIf="loading">Processing...</p>
+        @if (loading) {
+          <p>Processing...</p>
+        }
         <!-- ERROR -->
-        <p class="error" *ngIf="error">
-          {{ error }}
-        </p>
+        @if (error) {
+          <p class="error">
+            {{ error }}
+          </p>
+        }
       </form>
       <div class="links mt-1">
-        <a *ngIf="authType === 'login'" routerLink="/auth/register">
-          Create account
-        </a>
-        <a *ngIf="authType === 'login'" routerLink="/auth/reset">
-          Forgot password?
-        </a>
-        <a *ngIf="authType !== 'login'" routerLink="/auth/login">
-          Back to login
-        </a>
+        @if (authType === 'login') {
+          <a routerLink="/auth/register">
+            Create account
+          </a>
+        }
+        @if (authType === 'login') {
+          <a routerLink="/auth/reset">
+            Forgot password?
+          </a>
+        }
+        @if (authType !== 'login') {
+          <a routerLink="/auth/login">
+            Back to login
+          </a>
+        }
       </div>
     </div>
   </div>

@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+
 import { Component, computed, inject, input} from "@angular/core";
 import { NavigationService } from "./navigation.service";
 import { MatIconModule } from "@angular/material/icon";
@@ -8,7 +8,7 @@ import { MenuType, NavItem } from "../../models/navigation-model";
 @Component({
     selector:'navigation-menu',
     standalone:true,
-    imports: [CommonModule, MatIconModule,RouterModule],
+    imports: [MatIconModule, RouterModule],
     templateUrl:'navigation.component.html',
     styleUrl:'navigation.component.scss'
 })

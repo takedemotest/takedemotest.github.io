@@ -5,11 +5,11 @@ import { LOGIN } from '../store/auth/auth.actions'
 import { AuthActionType, AuthConfig } from './auth-config'
 import { ActivatedRoute, RouterModule } from '@angular/router'
 import { AUTH_CONFIG } from './auth-form.config'
-import { CommonModule } from '@angular/common'
+
 import * as AuthActions from '../store/auth/auth.actions'
 @Component({
   selector: 'app-auth-form',
-  imports: [ReactiveFormsModule, CommonModule, RouterModule],
+  imports: [ReactiveFormsModule, RouterModule],
   templateUrl: './auth-form.component.html',
   styleUrl: './auth-form.component.scss'
 })

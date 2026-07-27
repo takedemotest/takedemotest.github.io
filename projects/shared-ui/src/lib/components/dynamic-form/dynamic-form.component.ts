@@ -3,7 +3,7 @@ import { FormButtonConfig, FormFieldConfig } from '../../models/form-field-model
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AiAgentService } from './ai-agent.service';
 import { debounceTime } from 'rxjs';
-import { CommonModule } from '@angular/common';
+
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { IconService } from '../../../../../../src/app/core/services/icon.service';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,7 +12,7 @@ import { MatMenuModule } from '@angular/material/menu';
 @Component({
   selector: 'lib-dynamic-form',
   standalone: true, // Ensuring alignment with modern imports architecture
-  imports: [ReactiveFormsModule, CommonModule, MatIconModule, MatMenuModule],
+  imports: [ReactiveFormsModule, MatIconModule, MatMenuModule],
   templateUrl: './dynamic-form.component.html',
   styleUrl: './dynamic-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
