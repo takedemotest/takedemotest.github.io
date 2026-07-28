@@ -1,12 +1,8 @@
-
-.main_section{
-    padding: 15px;
-    display: flex;
+:host{
+      display: flex;
     flex-direction: column;
     gap: 15px;
-  }
-
-
+}
 .card-container-flex {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../../darwin_arm64-fastbuild-ST-fdfa778d11ba/bin/src/cdk/coercion/array.ts"],
+  "sourcesContent": ["/**\n * @license\n * Copyright Google LLC All Rights Reserved.\n *\n * Use of this source code is governed by an MIT-style license that can be\n * found in the LICENSE file at https://angular.dev/license\n */\n\n/** Wraps the provided value in an array, unless the provided value is an array. */\nexport function coerceArray<T>(value: T | T[]): T[];\nexport function coerceArray<T>(value: T | readonly T[]): readonly T[];\nexport function coerceArray<T>(value: T | T[]): T[] {\n  return Array.isArray(value) ? value : [value];\n}\n"],
+  "mappings": ";AAWM,SAAUA,YAAeC,OAAc;AAC3C,SAAOC,MAAMC,QAAQF,KAAK,IAAIA,QAAQ,CAACA,KAAK;AAC9C;",
+  "names": ["coerceArray", "value", "Array", "isArray"]
+}

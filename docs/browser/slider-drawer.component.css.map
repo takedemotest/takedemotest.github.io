@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["projects/shared-ui/src/lib/components/slider-drawer/slider-drawer.component.scss"],
+  "sourcesContent": [".slider-drawer-ui{\n    position: fixed;\n    width: 100%;\n    height: 100vh;\n    top: 0px;\n    background: rgba(0, 0, 0, .64);\n    z-index: 1;\n    display: flex;\n    &.left{\n        justify-content: flex-start;\n    }\n    &.right{\n        justify-content: flex-end;\n    }\n    .drawer-content{\n        background: var(--main-bg-color);\n       \n        .drawer-header{\n           display: flex;\n           justify-content: space-between;\n            padding:15px;\n            align-items: center;\n            border-bottom:1px solid #e0e0e0;\n            h5{\n                margin-bottom:0px;\n            }\n        }\n    }\n}"],
+  "mappings": ";AAAA,CAAA;AACI,YAAA;AACA,SAAA;AACA,UAAA;AACA,OAAA;AACA,cAAA,KAAA,CAAA,EAAA,CAAA,EAAA,CAAA,EAAA;AACA,WAAA;AACA,WAAA;;AACA,CARJ,gBAQI,CAAA;AACI,mBAAA;;AAEJ,CAXJ,gBAWI,CAAA;AACI,mBAAA;;AAEJ,CAdJ,iBAcI,CAAA;AACI,cAAA,IAAA;;AAEA,CAjBR,iBAiBQ,CAHJ,eAGI,CAAA;AACG,WAAA;AACA,mBAAA;AACC,WAAA;AACA,eAAA;AACA,iBAAA,IAAA,MAAA;;AACA,CAvBZ,iBAuBY,CATR,eASQ,CANJ,cAMI;AACI,iBAAA;;",
+  "names": []
+}

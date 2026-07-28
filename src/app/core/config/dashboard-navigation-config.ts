@@ -24,7 +24,7 @@ export const SIDEBAR_NAVIGATION: NavCategory[] = [
       { 
         label: 'Fields', 
         icon: 'warning', 
-        route: '/farmField',
+        route: '/fields',
         roleAllowed: ['ADMIN', 'OWNER', 'WORKER']
       },
       { 

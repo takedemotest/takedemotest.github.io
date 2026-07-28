@@ -2,6 +2,8 @@
     <sidebar></sidebar>
     <main>
         <top-header (toggleSidebar)="isOpen = !isOpen"></top-header>
-        <router-outlet />
+        <div class="main_section">
+            <router-outlet />
+        </div>
     </main>
 </div>
