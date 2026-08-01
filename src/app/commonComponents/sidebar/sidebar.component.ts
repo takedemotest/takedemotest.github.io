@@ -1,13 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { NavigationComponent } from '../../../../projects/shared-ui/src/lib/components/navigation/navigation.component';
-import { NavigationService } from '../../../../projects/shared-ui/src/lib/components/navigation/navigation.service';
 import { PROFILE_NAV } from '../../core/config/dashboard-navigation-config';
-import { NavItem } from '../../../../projects/shared-ui/src/lib/models/navigation-model';
 import { LOGOUT } from '../../global/store/auth/auth.actions';
 import { Store } from '@ngrx/store';
-import { IconService } from '../../core/services/icon.service';
 import { SIDEBAR_SVG_ICON } from './sidebar-icon.svg';
+import { IconService } from '@takedemotest/krishito-ui-icons';
+import { NavigationComponent, NavigationService, NavItem } from '@takedemotest/krishito-ui-navigation';
 
 @Component({
   selector: 'sidebar',

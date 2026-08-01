@@ -23,19 +23,14 @@ import {
   tap
 } from 'rxjs'
 
-import { CardsComponent } from '../../../projects/shared-ui/src/lib/components/cards/cards.component'
 import { CommonModule } from '@angular/common'
 import { Store } from '@ngrx/store'
 import { FormControl, ReactiveFormsModule } from '@angular/forms'
-import { DynamicFormComponent } from '../../../projects/shared-ui/src/lib/components/dynamic-form/dynamic-form.component'
-import { FormConfig, FormFieldConfig } from '../../../projects/shared-ui/src/lib/models/form-field-model'
 import { Task } from '../model/model'
 import { LOAD_STATS } from '../global/store/dashboard/dashboard.actions'
 import { ChartConfiguration } from 'chart.js'
 import { selectDashboardStates } from '../global/store/dashboard/dashboard.selectors'
-import { ChartComponent } from '../../../projects/shared-ui/src/lib/components/chart/chart.component'
 import { MatIconModule } from '@angular/material/icon'
-import { IconService } from '../core/services/icon.service'
 import { AnimalService } from '../core/services/animal.service'
 import { addAnimal, deleteAnimal, loadAnimals, updateAnimal } from '../global/store/animal/animal.actions'
 import { Animal } from '../global/store/animal/animal.model'
@@ -43,12 +38,15 @@ import { selectAnimals } from '../global/store/animal/animal.selectors'
 import { FormRegisterService } from '../core/services/form-register.service'
 import { selectUser } from '../global/store/auth/auth.selectors'
 import { ResponsiveService } from '../core/services/responsive-service.service'
-import { SliderDrawerComponent } from '../../../projects/shared-ui/src/lib/components/slider-drawer/slider-drawer.component'
 import { RECENT_ACTIVITY_CONFIG } from '../core/config/recent-activity-config'
-import { CardConfig } from '../../../projects/shared-ui/src/lib/models/card-model'
 import { DASHBOARD_SVG_ICONS } from '../core/config/dashboard-svg-icon'
 import { TASK_NOTIFICATION_CONFIG } from '../core/config/task-notification-config'
 import { DASHBOARD_QUICK_ACTIONS } from '../core/config/quick-action-config'
+import {CardConfig, CardsComponent} from '@takedemotest/krishito-ui-card'
+import { IconService } from '@takedemotest/krishito-ui-icons'
+import { DynamicFormComponent, FormConfig } from '@takedemotest/krishito-ui-form'
+import { SliderDrawerComponent } from '@takedemotest/krishito-ui-slider'
+import { GraphComponent } from '@takedemotest/krishito-ui-graph'
 @Component({
   standalone: true,
   selector: 'app-dashboard',
@@ -56,7 +54,7 @@ import { DASHBOARD_QUICK_ACTIONS } from '../core/config/quick-action-config'
     CommonModule,
     ReactiveFormsModule,
     DynamicFormComponent,
-    ChartComponent,
+    GraphComponent,
     MatIconModule,
     SliderDrawerComponent,
     CardsComponent],

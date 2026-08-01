@@ -56,6 +56,20 @@ export const routes: Routes = [
             (m) => m.FieldsComponent,
           ),
       },
+       {
+        path: 'crops',
+        loadComponent: () =>
+          loadRemoteModule('farmOperations', './cropModule').then(
+            (m) => m.CropComponent,
+          ),
+      },
+      {
+        path: 'expenseRevenue',
+        loadComponent: () =>
+          loadRemoteModule('expenseRevenue', './expenseRevenueModule').then(
+            (m) => m.ExpenseRevenueComponent,
+          ),
+      },
     ],
   },
   { path: '', redirectTo: 'auth/login', pathMatch: 'full' },

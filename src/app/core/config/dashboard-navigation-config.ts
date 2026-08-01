@@ -1,4 +1,5 @@
-import { NavCategory } from '../../../../projects/shared-ui/src/lib/models/navigation-model';
+import { NavCategory } from "@takedemotest/krishito-ui-navigation";
+
 
 export const SIDEBAR_NAVIGATION: NavCategory[] = [
   {
@@ -30,7 +31,7 @@ export const SIDEBAR_NAVIGATION: NavCategory[] = [
       { 
         label: 'Crops', 
         icon: 'warning', 
-        route: '/operations/crops',
+        route: '/crops',
         roleAllowed: ['ADMIN', 'OWNER', 'WORKER']
       },
       { 
@@ -93,7 +94,7 @@ export const SIDEBAR_NAVIGATION: NavCategory[] = [
       { 
         label: 'Expense / Revenue', 
         icon: 'warning', 
-        route: '/finance/ledger',
+        route: '/expenseRevenue',
         roleAllowed: ['ADMIN', 'OWNER'] // Hidden completely from regular workers
       },
       { 

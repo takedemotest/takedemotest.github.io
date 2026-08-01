@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["projects/shared-ui/src/lib/components/dynamic-form/dynamic-form.component.scss"],
-  "sourcesContent": [".reactive-form{\n    .form-container{\n        display:flex;\n        flex-wrap:wrap;\n        gap:20px;\n        &.inline{\n             display: grid;\n             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));\n        }\n        &.block{\n            display:flex;\n            flex-direction:column;\n        }\n         .form-actions{\n        display:flex;\n        align-items: end;\n    }\n    }\n.form-field-group{\n    position:relative;\n    .error-message{\n        position:absolute;\n        bottom:-15px;\n        left:0px;\n        color:red;\n        font-size:10px;\n    }\n}\n}"],
-  "mappings": ";AACI,CAAA,cAAA,CAAA;AACI,WAAA;AACA,aAAA;AACA,OAAA;;AACA,CAJJ,cAII,CAJJ,cAII,CAAA;AACK,WAAA;AACA,yBAAA,OAAA,SAAA,EAAA,OAAA,KAAA,EAAA;;AAEL,CARJ,cAQI,CARJ,cAQI,CAAA;AACI,WAAA;AACA,kBAAA;;AAEH,CAZL,cAYK,CAZL,eAYK,CAAA;AACD,WAAA;AACA,eAAA;;AAGR,CAjBI,cAiBJ,CAAA;AACI,YAAA;;AACA,CAnBA,cAmBA,CAFJ,iBAEI,CAAA;AACI,YAAA;AACA,UAAA;AACA,QAAA;AACA,SAAA;AACA,aAAA;;",
-  "names": []
-}

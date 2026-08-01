@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "remove": "rm -rf node_modules/.cache && rm -rf .angular dist"
+    "remove": "rm -rf node_modules && rm -rf .angular dist && rm -rf package-lock.json && npm cache clean --force"
   },
   "private": true,
   "dependencies": {
@@ -24,11 +24,17 @@
     "@ngrx/effects": "^22.0.0-beta.0",
     "@ngrx/store": "^22.0.0-beta.0",
     "@softarc/native-federation-node": "^3.5.5",
+    "@takedemotest/krishito-ui-card": "0.0.2",
+    "@takedemotest/krishito-ui-form": "^0.0.1",
+    "@takedemotest/krishito-ui-graph": "^0.0.3",
+    "@takedemotest/krishito-ui-icons": "1.0.2",
+    "@takedemotest/krishito-ui-navigation": "^0.0.1",
+    "@takedemotest/krishito-ui-slider": "^0.0.1",
     "bootstrap": "^5.3.8",
     "chart.js": "^4.5.1",
     "es-module-shims": "^2.8.0",
     "jwt-decode": "^4.0.0",
-    "ng2-charts": "^8.0.0",
+    "ng2-charts": "^10.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"

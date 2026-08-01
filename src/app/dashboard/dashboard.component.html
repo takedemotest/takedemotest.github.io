@@ -61,9 +61,9 @@
 <slider-drawer title="{{sliderTitle}} livestock" position="right" width="500px" [(isOpen)]="isAnimalOpen">
   <div class="card-container-flex">
     @if (activePlugin(); as plugin) {
-    <lib-dynamic-form [fields]="plugin.fields" [buttonConfig]="plugin.buttonConfig" [type]="plugin.type"
+    <dynamic-form [fields]="plugin.fields" [buttonConfig]="plugin.buttonConfig" [type]="plugin.type"
       [initialData]="selectedAnimalData" (actionTriggered)="handleSubmit($event)">
-    </lib-dynamic-form>
+    </dynamic-form>
     } @else {
     <p>Loading plugin configuration...</p>
     }
@@ -73,9 +73,9 @@
 <slider-drawer title="{{sliderTitle}}" position="right" width="500px" [(isOpen)]="isRecentActivity">
   <div class="card-container-flex">
     @if (recentAcitivitySignal(); as plugin) {
-    <lib-dynamic-form [fields]="plugin.fields" [buttonConfig]="plugin.buttonConfig" [type]="plugin.type"
+    <dynamic-form [fields]="plugin.fields" [buttonConfig]="plugin.buttonConfig" [type]="plugin.type"
       [initialData]="activityData" (actionTriggered)="handleActivitySubmit($event)">
-    </lib-dynamic-form>
+    </dynamic-form>
     } @else {
     <p>Loading plugin configuration...</p>
     }
@@ -86,8 +86,8 @@
 <ng-template #milkProduction let-item>
   <div class="chart">
             <span>{{ item.milkProduction }} liters</span>
-            <app-chart [chartData]="lineChartData()" chartType="line">
-            </app-chart>
+            <graph [GraphData]="lineChartData()" chartType="line">
+            </graph>
           </div>
 </ng-template>
 

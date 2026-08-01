@@ -1,4 +1,4 @@
-import { FormFieldConfig } from "../../../../projects/shared-ui/src/lib/models/form-field-model";
+import { FormFieldConfig } from "@takedemotest/krishito-ui-form";
 
 export const RECENT_ACTIVITY_CONFIG: FormFieldConfig[] = [
   { name: 'Activity Title', label: 'Activity Title', placeholder: 'e.g., Purchased 500kg cattle feed from KRISHITO Agro..', type: 'text', required: true },

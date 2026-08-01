@@ -1,4 +1,4 @@
-import { FormFieldConfig } from "../../../../projects/shared-ui/src/lib/models/form-field-model";
+import { FormFieldConfig } from "@takedemotest/krishito-ui-form";
 
 export const ANIMAL_CONFIG: FormFieldConfig[] = [
   { name: 'name', label: 'Name', placeholder: 'Name', type: 'text', required: true },

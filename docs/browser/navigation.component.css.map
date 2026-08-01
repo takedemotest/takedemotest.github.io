@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["projects/shared-ui/src/lib/components/navigation/navigation.component.scss"],
-  "sourcesContent": [".nav{\n    .nav-link{\n    font-size: var( --nav-link-font-size, 12px);\n    color: var(--main-text-color);\n    padding: var( --nav-link-padding, 5px 0px);\n    display: flex;\n    gap:var(--nav-link-gap, 5px);\n    align-items: center;\n    mat-icon{\n      width:18px;\n      height:18px;\n    }\n}\n.menu-category{\n    font-size: var( --menu-category-font-size, 12px);;\n    color:black;\n    padding:10px 0 0;\n    border-top: 1px solid var(--border-color);\n    margin-top: 10px;\n}\n}"],
-  "mappings": ";AACI,CAAA,IAAA,CAAA;AACA,aAAA,IAAA,oBAAA,EAAA;AACA,SAAA,IAAA;AACA,WAAA,IAAA,kBAAA,EAAA,IAAA;AACA,WAAA;AACA,OAAA,IAAA,cAAA,EAAA;AACA,eAAA;;AACA,CAPA,IAOA,CAPA,SAOA;AACE,SAAA;AACA,UAAA;;AAGN,CAZI,IAYJ,CAAA;AACI,aAAA,IAAA,yBAAA,EAAA;AACA,SAAA;AACA,WAAA,KAAA,EAAA;AACA,cAAA,IAAA,MAAA,IAAA;AACA,cAAA;;",
-  "names": []
-}

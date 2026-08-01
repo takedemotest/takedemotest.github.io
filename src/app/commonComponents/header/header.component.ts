@@ -1,14 +1,13 @@
 import { Component, inject, output } from '@angular/core';
-import { NavigationComponent } from '../../../../projects/shared-ui/src/lib/components/navigation/navigation.component';
 import { MatIconModule } from '@angular/material/icon';
-import { NavigationService } from '../../../../projects/shared-ui/src/lib/components/navigation/navigation.service';
 import { Store } from '@ngrx/store';
 import { SIDEBAR_NAVIGATION } from '../../core/config/dashboard-navigation-config';
 import { SearchComponent } from '../search/search.component';
 import { selectUser } from '../../global/store/auth/auth.selectors';
 import { CommonModule } from '@angular/common';
-import { IconService } from '../../core/services/icon.service';
 import { HEADER_SVG_ICON } from './header-icon.svg';
+import { IconService } from '@takedemotest/krishito-ui-icons';
+import { NavigationComponent, NavigationService } from '@takedemotest/krishito-ui-navigation';
 
 @Component({
   selector: 'top-header',

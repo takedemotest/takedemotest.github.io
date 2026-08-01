@@ -1,5 +1,5 @@
 import { TemplateRef } from "@angular/core";
-import { CardConfig } from "../../../../projects/shared-ui/src/lib/models/card-model";
+import { CardConfig } from "@takedemotest/krishito-ui-card";
 
 
 interface DashboardTaskNotification{

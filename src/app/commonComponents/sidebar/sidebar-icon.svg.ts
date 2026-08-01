@@ -6,5 +6,6 @@ export const SIDEBAR_SVG_ICON:string[]=[
   'help',
   'search', 
   'menu', 
-  'warning'
+  'warning',
+  'logo'
 ] 
