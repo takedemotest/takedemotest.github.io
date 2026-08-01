@@ -37,6 +37,8 @@ export const routes: Routes = [
       },
     ],
   },
+  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+  { path: '**', redirectTo: 'auth/login' },
   {
     path: '',
     component: MainLayoutComponent,
@@ -72,6 +74,5 @@ export const routes: Routes = [
       },
     ],
   },
-  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
-  { path: '**', redirectTo: 'auth/login' },
+
 ];

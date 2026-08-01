@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/global/auth-form/auth-form.component.scss"],
+  "sourcesContent": [".auth-container{\n        width:clamp(300px, 90%, 1600px);\n        margin:0 auto;\n        display: grid;\n        grid-template-columns: 1fr 300px;\n       @media (max-width: 600px) {\n            .splash-img{\n                img{\n                    display:none;\n                }\n            }\n        }\n        .splash-img{\n            img{\n                width:100%;\n                height:100%;\n                object-fit:cover;\n            }\n        }\n    .card{\n        background: rgb(213 234 255 / 64%);\n        border:none;\n        border-radius:15px;\n        gap:15px;\n    }\n    .links{\n        display: flex;\n        justify-content: space-between;\n    }\n    .form-group{\n        margin-bottom:15px;\n    }\n    .error{\n        span{\n            font-size:10px;\n            color:rgb(251 70 70);\n            display:flex;\n        }\n    }\n}"],
+  "mappings": ";AAAA,CAAA;AACQ,SAAA,MAAA,KAAA,EAAA,GAAA,EAAA;AACA,UAAA,EAAA;AACA,WAAA;AACA,yBAAA,IAAA;;AACD,QAAA,WAAA;AAES,GAPhB,eAOgB,CAAA,WAAA;AACI,aAAA;;;AAKR,CAbZ,eAaY,CANI,WAMJ;AACI,SAAA;AACA,UAAA;AACA,cAAA;;AAGZ,CAnBJ,eAmBI,CAAA;AACI,cAAA,KAAA,GAAA,EAAA,GAAA,EAAA,GAAA,EAAA;AACA,UAAA;AACA,iBAAA;AACA,OAAA;;AAEJ,CAzBJ,eAyBI,CAAA;AACI,WAAA;AACA,mBAAA;;AAEJ,CA7BJ,eA6BI,CAAA;AACI,iBAAA;;AAGA,CAjCR,eAiCQ,CAAA,MAAA;AACI,aAAA;AACA,SAAA,IAAA,GAAA,EAAA,EAAA,EAAA;AACA,WAAA;;",
+  "names": []
+}
