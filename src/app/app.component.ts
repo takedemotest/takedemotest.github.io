@@ -1,16 +1,17 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms'
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import {CommonModule } from '@angular/common';
+
 import { FormRegisterService } from './core/services/form-register.service';
 import { ANIMAL_CONFIG } from './core/config/animal-form-config';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,ReactiveFormsModule, CommonModule ],
+  imports: [RouterOutlet, ReactiveFormsModule],
   templateUrl: './app.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './app.component.scss'
 })
 export class AppComponent {

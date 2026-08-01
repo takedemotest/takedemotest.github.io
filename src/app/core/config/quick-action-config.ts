@@ -1,48 +1,39 @@
 import { TemplateRef } from '@angular/core';
-import { CardConfig } from '../../../../projects/shared-ui/src/lib/models/card-model';
+import { CardConfig } from '@takedemotest/krishito-ui-card';
 
-interface DashboardQuickAction{
-  invoice:TemplateRef<any>;
-}
 
-export const dashboardQuickActions = (templates:DashboardQuickAction): CardConfig[] => [
+export const DASHBOARD_QUICK_ACTIONS: CardConfig[] = [
  
   {
     id: 'ACTION_ADD_ANIMAL',
     title: 'Add Animal',
     subtitle: 'Register new animal',
-    icon: 'add_box',
+    icon: 'warning',
     isClickable: true,
-    showHeader: true,
-    showFooter: false,
-    body:'testing body tang'
+    showHeader: true
   },
   {
     id: 'ACTION_ADD_ACTIVITY',
     title: 'Add Activity',
     subtitle: 'Log farm activity',
-    icon: 'bolt',
+    icon: 'warning',
     isClickable: true,
     showHeader: true,
-    showFooter: false,
   },
   {
     id: 'ACTION_CREATE_INVOICE',
     title: 'Create Invoice',
     subtitle: 'Generate invoice',
-    icon: 'receipt_long',
+    icon: 'warning',
     isClickable: true,
     showHeader: true,
-    showFooter: false,
-    hasBodyContent:templates.invoice
   },
   {
     id: 'ACTION_ADD_EXPENSE',
     title: 'Add Expense',
     subtitle: 'Record expense',
-    icon: 'payments',
+    icon: 'warning',
     isClickable: true,
     showHeader: true,
-    showFooter: false,
   },
 ];

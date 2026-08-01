@@ -1,4 +1,4 @@
-import { FormFieldConfig } from "../../../../projects/shared-ui/src/lib/models/form-field-model";
+import { FormFieldConfig } from "@takedemotest/krishito-ui-form";
 
 export const ANIMAL_CONFIG: FormFieldConfig[] = [
   { name: 'name', label: 'Name', placeholder: 'Name', type: 'text', required: true },
@@ -23,7 +23,8 @@ export const ANIMAL_CONFIG: FormFieldConfig[] = [
     options: [
       { label: 'Healthy', value: 'Healthy' },
       { label: 'Sick', value: 'Sick' },
-      { label: 'Under Treatment', value: 'Under Treatment' }
+      { label: 'Under Treatment', value: 'Under Treatment' },
+       { label: 'Pregnant', value: 'Pregnant' }
     ]
   }
 ]

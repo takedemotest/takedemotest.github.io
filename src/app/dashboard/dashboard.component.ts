@@ -23,25 +23,14 @@ import {
   tap
 } from 'rxjs'
 
-import { CardsComponent } from '../../../projects/shared-ui/src/lib/components/cards/cards.component'
 import { CommonModule } from '@angular/common'
 import { Store } from '@ngrx/store'
-import { LOGOUT } from '../global/store/auth/auth.actions'
-import { SearchComponent } from '../commonComponents/search/search.component'
-import { EntryBookComponent } from '../commonComponents/entry-book/entry-book.component'
 import { FormControl, ReactiveFormsModule } from '@angular/forms'
-import { DiaryDataComponent } from '../commonComponents/dairy-data/diary-data.component'
-import { UsermodelService } from '../commonComponents/add-user/usermodel.service'
-import { DynamicFormComponent } from '../../../projects/shared-ui/src/lib/components/dynamic-form/dynamic-form.component'
-import { FormConfig, FormFieldConfig } from '../../../projects/shared-ui/src/lib/models/form-field-model'
-import { ApiService } from '../core/services/api.service'
 import { Task } from '../model/model'
 import { LOAD_STATS } from '../global/store/dashboard/dashboard.actions'
 import { ChartConfiguration } from 'chart.js'
 import { selectDashboardStates } from '../global/store/dashboard/dashboard.selectors'
-import { ChartComponent } from '../../../projects/shared-ui/src/lib/components/chart/chart.component'
 import { MatIconModule } from '@angular/material/icon'
-import { IconService } from '../core/services/icon.service'
 import { AnimalService } from '../core/services/animal.service'
 import { addAnimal, deleteAnimal, loadAnimals, updateAnimal } from '../global/store/animal/animal.actions'
 import { Animal } from '../global/store/animal/animal.model'
@@ -49,28 +38,25 @@ import { selectAnimals } from '../global/store/animal/animal.selectors'
 import { FormRegisterService } from '../core/services/form-register.service'
 import { selectUser } from '../global/store/auth/auth.selectors'
 import { ResponsiveService } from '../core/services/responsive-service.service'
-import { SliderDrawerComponent } from '../../../projects/shared-ui/src/lib/components/slider-drawer/slider-drawer.component'
-import { NavigationService } from '../../../projects/shared-ui/src/lib/components/navigation/navigation.service'
-import { NavigationComponent } from '../../../projects/shared-ui/src/lib/components/navigation/navigation.component'
-import { PROFILE_NAV, SIDEBAR_NAVIGATION } from '../core/config/dashboard-navigation-config'
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
-import { NavItem } from '../../../projects/shared-ui/src/lib/models/navigation-model'
 import { RECENT_ACTIVITY_CONFIG } from '../core/config/recent-activity-config'
-import { dashboardQuickActions } from '../core/config/quick-action-config'
-import { CardConfig } from '../../../projects/shared-ui/src/lib/models/card-model'
 import { DASHBOARD_SVG_ICONS } from '../core/config/dashboard-svg-icon'
+import { TASK_NOTIFICATION_CONFIG } from '../core/config/task-notification-config'
+import { DASHBOARD_QUICK_ACTIONS } from '../core/config/quick-action-config'
+import {CardConfig, CardsComponent} from '@takedemotest/krishito-ui-card'
+import { IconService } from '@takedemotest/krishito-ui-icons'
+import { DynamicFormComponent, FormConfig } from '@takedemotest/krishito-ui-form'
+import { SliderDrawerComponent } from '@takedemotest/krishito-ui-slider'
+import { GraphComponent } from '@takedemotest/krishito-ui-graph'
 @Component({
   standalone: true,
   selector: 'app-dashboard',
   imports: [
     CommonModule,
-    SearchComponent,
     ReactiveFormsModule,
     DynamicFormComponent,
-    ChartComponent,
+    GraphComponent,
     MatIconModule,
     SliderDrawerComponent,
-    NavigationComponent,
     CardsComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
@@ -114,7 +100,7 @@ export class DashboardComponent implements AfterViewInit {
 
   private store = inject(Store);
   private formconfig = inject(FormRegisterService);
-  private navService = inject(NavigationService)
+
   public iconService = inject(IconService)
 
   animals:any;
@@ -124,17 +110,23 @@ export class DashboardComponent implements AfterViewInit {
   public activePlugin = signal<any>(null);
   public recentAcitivitySignal = signal<any>(null);
 
-  user$ = this.store.select(selectUser);
-  isOpen = false;
+ 
+  
 
-  public quickActions = signal<CardConfig[]>([]);
+  public quickActions = signal<CardConfig[]>(DASHBOARD_QUICK_ACTIONS);
+  public taskNotification = signal<CardConfig[]>([]);
 
 
   constructor ( private cdr:ChangeDetectorRef,private animalService: AnimalService, public responsive:ResponsiveService) {
         this.iconService.registerIcons(DASHBOARD_SVG_ICONS);
   }
 
-  @ViewChild('customInvoice') invoiceTemplate!: TemplateRef<any>;
+
+  @ViewChild('milkProduction') milkProductionTemplate!: TemplateRef<any>;
+  @ViewChild('inventoryAlerts') inventoryAlertsTemplate!: TemplateRef<any>;
+  @ViewChild('upcomingTasks') upcomingTasksTemplate!: TemplateRef<any>; 
+
+  
 
   ngOnInit () {
     this.formconfig.registerForm('RECENT_ACTIVITY_FORM',{
@@ -182,29 +174,19 @@ export class DashboardComponent implements AfterViewInit {
    this.animals$.subscribe(data=>{
     this.animals = data;
    });
-
-   this.navService.setUserRole('ADMIN');
-   this.navService.registerMenu('sidebar-menu', SIDEBAR_NAVIGATION);
-   this.navService.registerMenu('profile-menu', PROFILE_NAV);
-
-   this.navService.menuAction$
-   .subscribe((item:NavItem)=>{
-     this.menuAction(item.action, item)
-   })
 }
 
   ngAfterViewInit(){
-     const actionTemplateConfig = dashboardQuickActions({
-      invoice: this.invoiceTemplate
-     })
-     this.quickActions.set(actionTemplateConfig)
+  
+      const taskNotificationConfig = TASK_NOTIFICATION_CONFIG({
+        milkProduction: this.milkProductionTemplate,
+        inventoryAlerts: this.inventoryAlertsTemplate,
+        upcomingTasks: this.upcomingTasksTemplate
+      });
+      this.taskNotification.set(taskNotificationConfig);
     }
 
-menuAction(action:string|undefined, item:NavItem) {
-  if(action === 'logout') {
-    this.logout();
-  }
-}
+
 
 handleQuickAction(event:{ cardId: string; actionId: string }) {
   switch(event.cardId) {
@@ -217,11 +199,6 @@ handleQuickAction(event:{ cardId: string; actionId: string }) {
     }
   }
 
-toggleSidebar() {
-  this.isOpen = !this.isOpen;
-}
-
-  onResultChange (filteredData: any[]) {}
   handleSubmit (addAnimalData: any) {
     const formConfig:any = this.formconfig.getFormConfig('ANIMAL_FORM');
     const animalData = {
@@ -303,9 +280,7 @@ toggleSidebar() {
     this.isRecentActivity = true;
   }
 
-  logout () {
-    this.store.dispatch(LOGOUT())
-  }
+ 
 
   ngOnDestroy () {}
 }

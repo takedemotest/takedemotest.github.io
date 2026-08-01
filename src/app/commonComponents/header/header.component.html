@@ -1,0 +1,33 @@
+<div class="top-header">
+      <header>
+        <div class="letf-div">
+          <div class="collasp-sidenav">
+            <button class="btn btn-light" (click)="toggleSidebar.emit()">
+              <mat-icon svgIcon="menu"></mat-icon>
+            </button>
+          </div>
+          <div class="search">
+            <app-search (resultChange)="onResultChange($event)"></app-search>
+            <mat-icon svgIcon="search"></mat-icon>
+          </div>
+        </div>
+        <div class="">
+          <ul class="nav header-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#"><mat-icon svgIcon="notification" class="header-icon"></mat-icon></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                @if (user$ | async; as user) {<mat-icon class="header-icon" svgIcon="warning"></mat-icon>
+                Hello {{ user.name }}}</a>
+
+              <ul class="sub-menu">
+                <div>
+                  <navigation-menu layoutKey="profile-menu"></navigation-menu>
+                </div>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </header>
+    </div>
