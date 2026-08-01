@@ -1,1 +1,0 @@
-import{createAction as t,props as r}from"@ngrx/store";var s=t("[auth]Login",r()),o=t("[auth]Login Success",r()),n=t("[auth]Login Failure",r()),i=t("[auth] Register",r()),a=t("[auth] register success",r()),c=t("[auth] register failed",r()),g=t("[auth] Reset",r()),p=t("[auth]Logout");export{s as a,o as b,n as c,i as d,a as e,c as f,g,p as h};
