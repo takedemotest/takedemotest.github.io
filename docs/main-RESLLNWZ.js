@@ -1,1 +1,0 @@
-import{a as t}from"./chunk-XNFUFXXQ.js";import"./chunk-4CLCTAJ7.js";t({expenseRevenue:"https://takedemotest.github.io/expense-revenue/remoteEntry.json"}).then(e=>import("./chunk-BQJJLW37.js")).catch(e=>console.error(e));
