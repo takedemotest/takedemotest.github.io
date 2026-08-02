@@ -49,6 +49,13 @@ export const routes: Routes = [
             (c) => c.DashboardComponent,
           ),
       },
+       {
+        path: 'task',
+        loadComponent: () =>
+          import('./task/task.component').then(
+            (c) => c.TaskComponent,
+          ),
+      },
       {
         path: 'fields',
         loadComponent: () =>
