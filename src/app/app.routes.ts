@@ -37,8 +37,6 @@ export const routes: Routes = [
       },
     ],
   },
-  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
-  { path: '**', redirectTo: 'auth/login' },
   {
     path: '',
     component: MainLayoutComponent,
@@ -72,7 +70,13 @@ export const routes: Routes = [
             (m) => m.ExpenseRevenueComponent,
           ),
       },
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
+      },
     ],
   },
-
+  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+  { path: '**', redirectTo: 'auth/login' },
 ];
