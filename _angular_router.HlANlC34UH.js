@@ -1553,7 +1553,7 @@ function ks(t) { return t.map(n => (...e) => Ke(n).canActivate(...e)); }
 function $s(t) { return t.map(n => (...e) => Ke(n).canActivateChild(...e)); }
 function zs(t) { return t.map(n => (...e) => Ke(n).canDeactivate(...e)); }
 function Hs(t) { return (...n) => Ke(t).resolve(...n); }
-var Fs = new Ga("22.1.0");
+var Fs = new Ga("22.1.1");
 export { K as ActivatedRoute, Ee as ActivatedRouteSnapshot, pt as ActivationEnd, ft as ActivationStart, Rt as BaseRouteReuseStrategy, dt as ChildActivationEnd, ht as ChildActivationStart, ge as ChildrenOutletContexts, mn as DefaultTitleStrategy, J as DefaultUrlSerializer, b as EventType, at as GuardsCheckEnd, ot as GuardsCheckStart, D as NavigationCancel, I as NavigationCancellationCode, O as NavigationEnd, oe as NavigationError, B as NavigationSkipped, we as NavigationSkippedCode, X as NavigationStart, Ea as NoPreloading, gt as OutletContext, f as PRIMARY_OUTLET, Aa as PreloadAllModules, We as PreloadingStrategy, te as ROUTER_CONFIGURATION, mr as ROUTER_INITIALIZER, nn as ROUTER_OUTLET_DATA, ve as ROUTES, Te as RedirectCommand, ct as ResolveEnd, st as ResolveStart, lt as RouteConfigLoadEnd, ut as RouteConfigLoadStart, bn as RouteReuseStrategy, V as Router, x as RouterEvent, Mt as RouterLink, ba as RouterLinkActive, Mt as RouterLinkWithHref, za as RouterModule, sr as RouterOutlet, On as RouterPreloader, ze as RouterState, He as RouterStateSnapshot, $e as RoutesRecognized, be as Scroll, lr as TitleStrategy, wt as UrlHandlingStrategy, ne as UrlSegment, y as UrlSegmentGroup, ae as UrlSerializer, _ as UrlTree, Fs as VERSION, he as convertToParamMap, Kr as createUrlTreeFromSnapshot, kr as defaultUrlMatcher, Wo as destroyDetachedRouteHandle, nr as isActive, ks as mapToCanActivate, $s as mapToCanActivateChild, zs as mapToCanDeactivate, xs as mapToCanMatch, Hs as mapToResolve, _a as provideRouter, Fn as withComponentInputBinding, Pa as withDebugTracing, $n as withDisabledInitialNavigation, kn as withEnabledBlockingInitialNavigation, ka as withExperimentalAutoCleanupInjectors, Oa as withExperimentalPlatformNavigation, ja as withHashLocation, Ua as withInMemoryScrolling, xa as withNavigationErrorHandler, Hn as withPreloading, La as withRouterConfig, qn as withViewTransitions, cr as \u0275EmptyOutletComponent, Bn as \u0275ROUTER_PROVIDERS, At as \u0275afterNextNavigation, yn as \u0275loadChildren, $a as \u0275withActivatedRouteInjectors };
 /*! Bundled license information:
 
@@ -1561,7 +1561,7 @@ export { K as ActivatedRoute, Ee as ActivatedRouteSnapshot, pt as ActivationEnd,
 @angular/router/fesm2022/_router_module-chunk.mjs:
 @angular/router/fesm2022/router.mjs:
   (**
-   * @license Angular v22.1.0
+   * @license Angular v22.1.1
    * (c) 2010-2026 Google LLC. https://angular.dev/
    * License: MIT
    *)

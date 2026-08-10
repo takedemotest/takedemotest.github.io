@@ -125,7 +125,7 @@ var q = class {
     get formDirective() { return null; }
     get path() { return null; }
 };
-var ti = new Vt("22.1.0");
+var ti = new Vt("22.1.1");
 var P = "VALID", H = "INVALID", F = "PENDING", k = "DISABLED", y = class {
 }, $ = class extends y {
     value;
@@ -924,7 +924,7 @@ export { x as AbstractControl, q as AbstractControlDirective, _e as AbstractForm
 
 @angular/forms/fesm2022/forms.mjs:
   (**
-   * @license Angular v22.1.0
+   * @license Angular v22.1.1
    * (c) 2010-2026 Google LLC. https://angular.dev/
    * License: MIT
    *)
