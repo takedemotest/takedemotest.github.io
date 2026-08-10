@@ -29,7 +29,7 @@
     "@takedemotest/krishito-ui-graph": "^0.0.3",
     "@takedemotest/krishito-ui-icons": "1.0.2",
     "@takedemotest/krishito-ui-navigation": "^0.0.1",
-    "@takedemotest/krishito-ui-slider": "^0.0.1",
+    "@takedemotest/krishito-ui-slider": "^0.0.2",
     "bootstrap": "^5.3.8",
     "chart.js": "^4.5.1",
     "es-module-shims": "^2.8.0",
