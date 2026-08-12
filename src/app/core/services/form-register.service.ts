@@ -14,6 +14,4 @@ export class FormRegisterService {
     getFormConfig(name: string): any | undefined {
         return this.formRegistry.get(name);
     }
-
-
 }

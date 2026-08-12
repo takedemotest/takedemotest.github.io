@@ -70,6 +70,20 @@ export const routes: Routes = [
             (m) => m.CropComponent,
           ),
       },
+       {
+        path: 'crops',
+        loadComponent: () =>
+          loadRemoteModule('inventory', './physicalInventoryModule').then(
+            (m) => m.CropComponent,
+          ),
+      },
+       {
+        path: 'OperationalUtilityResources',
+        loadComponent: () =>
+          loadRemoteModule('inventory', './OperationalUtilityResourcesModule').then(
+            (m) => m.CropComponent,
+          ),
+      },
       {
         path: 'expenseRevenue',
         loadComponent: () =>

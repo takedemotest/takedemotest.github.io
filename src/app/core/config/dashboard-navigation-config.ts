@@ -75,15 +75,15 @@ export const SIDEBAR_NAVIGATION: NavCategory[] = [
     categoryName: 'INVENTORY',
     items: [
       { 
-        label: 'Feed / Seed', 
+        label: 'physical Inventory', 
         icon: 'warning', 
-        route: '/inventory/feed-seed',
+        route: '/physicalInventory',
         roleAllowed: ['ADMIN', 'OWNER', 'WORKER']
       },
       { 
-        label: 'Fertilizer / Medicine', 
+        label: 'Operational Utility Resources', 
         icon: 'warning', 
-        route: '/inventory/fertilizer-medicine',
+        route: '/OperationalUtilityResources',
         roleAllowed: ['ADMIN', 'OWNER', 'VET']
       }
     ]
