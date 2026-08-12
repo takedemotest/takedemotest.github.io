@@ -95,11 +95,15 @@ export const SIDEBAR_NAVIGATION: NavCategory[] = [
         label: 'Expense / Revenue', 
         icon: 'warning', 
         route: '/expenseRevenue',
-        roleAllowed: ['ADMIN', 'OWNER'] // Hidden completely from regular workers
-      },
-      { 
+        roleAllowed: ['ADMIN', 'OWNER']
+      }
+    ]
+  },
+  {
+     items: [
+     { 
         label: 'Settings', 
-        icon: 'warning', 
+        icon: 'setting', 
         route: '/settings',
         roleAllowed: ['ADMIN', 'OWNER']
       }
