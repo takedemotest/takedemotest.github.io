@@ -75,7 +75,7 @@ export const SIDEBAR_NAVIGATION: NavCategory[] = [
     categoryName: 'INVENTORY',
     items: [
       { 
-        label: 'physical Inventory', 
+        label: 'Physical Inventory', 
         icon: 'warning', 
         route: '/physicalInventory',
         roleAllowed: ['ADMIN', 'OWNER', 'WORKER']

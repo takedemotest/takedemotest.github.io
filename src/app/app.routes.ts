@@ -71,17 +71,17 @@ export const routes: Routes = [
           ),
       },
        {
-        path: 'crops',
+        path: 'physicalInventory',
         loadComponent: () =>
           loadRemoteModule('inventory', './physicalInventoryModule').then(
-            (m) => m.CropComponent,
+            (m) => m.PhysicalInventoryComponent,
           ),
       },
        {
         path: 'OperationalUtilityResources',
         loadComponent: () =>
           loadRemoteModule('inventory', './OperationalUtilityResourcesModule').then(
-            (m) => m.CropComponent,
+            (m) => m.OperationalUtilityResources,
           ),
       },
       {
