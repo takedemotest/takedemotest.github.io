@@ -37,6 +37,10 @@ jobs:
           # Changed base-href to root '/' for takedemotest.github.io
           npm run build -- --base-href=/
 
+      - name: Create 404.html for SPA routing fallback
+        run: cp dist/takedemotest.github.io/browser/index.html dist/takedemotest.github.io/browser/404.html
+           
+
       - name: Create .nojekyll File
         run: |
           touch dist/takedemotest.github.io/.nojekyll || true
