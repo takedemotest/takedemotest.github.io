@@ -40,7 +40,7 @@ import { selectUser } from '../global/store/auth/auth.selectors'
 import { ResponsiveService } from '../core/services/responsive-service.service'
 import { RECENT_ACTIVITY_CONFIG } from '../core/config/recent-activity-config'
 import { DASHBOARD_SVG_ICONS } from '../core/config/dashboard-svg-icon'
-import { TASK_NOTIFICATION_CONFIG } from '../core/config/task-notification-config'
+import { DAILY_REPORT_CONFIG } from '../core/config/daily-report-config'
 import { DASHBOARD_QUICK_ACTIONS } from '../core/config/quick-action-config'
 import {CardConfig, CardsComponent} from '@takedemotest/krishito-ui-card'
 import { IconService } from '@takedemotest/krishito-ui-icons'
@@ -114,7 +114,7 @@ export class DashboardComponent implements AfterViewInit {
   
 
   public quickActions = signal<CardConfig[]>(DASHBOARD_QUICK_ACTIONS);
-  public taskNotification = signal<CardConfig[]>([]);
+  public dailyReport = signal<CardConfig[]>([]);
 
 
   constructor ( private cdr:ChangeDetectorRef,private animalService: AnimalService, public responsive:ResponsiveService) {
@@ -178,12 +178,12 @@ export class DashboardComponent implements AfterViewInit {
 
   ngAfterViewInit(){
   
-      const taskNotificationConfig = TASK_NOTIFICATION_CONFIG({
+      const dailyReportConfig = DAILY_REPORT_CONFIG({
         milkProduction: this.milkProductionTemplate,
         inventoryAlerts: this.inventoryAlertsTemplate,
         upcomingTasks: this.upcomingTasksTemplate
       });
-      this.taskNotification.set(taskNotificationConfig);
+      this.dailyReport.set(dailyReportConfig);
     }
 
 

@@ -8,7 +8,7 @@ interface DashboardTaskNotification{
     upcomingTasks:TemplateRef<any>;
 }
 
-export const  TASK_NOTIFICATION_CONFIG=(templates: DashboardTaskNotification): CardConfig[] => [
+export const  DAILY_REPORT_CONFIG=(templates: DashboardTaskNotification): CardConfig[] => [
   {
     id: `Milk Production`,
     title: `Today's Milk Production`,

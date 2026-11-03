@@ -1,1 +1,23 @@
-<p>task works!</p>
+<h4>Tasks</h4>
+<p>Auto-generated from Health, Breeding, Inventory & Finance, plus manual tasks</p>
+
+<div class="task-notification-card">
+    <div class="action-card-container">
+        <cards type="inline" [config]="taskNotification()">
+        </cards>
+    </div>
+</div>
+
+<agGrid-ui [config]="gridConfig()" [fetchService]="fetchTransactionData" (actionTriggered)="handleAction($event)">
+</agGrid-ui>
+
+<ng-template #dueToday>
+    <h4>3</h4>
+</ng-template>
+<ng-template #overdue>
+    <h4 style="color: red;">2</h4>
+</ng-template>
+<ng-template #completed>
+    <h4 style="color: green;">5</h4>
+</ng-template>
+
