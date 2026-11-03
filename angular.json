@@ -15,7 +15,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-architects/native-federation:build",
+          "builder": "@angular/build:application",
           "options": {
             "cacheExternalArtifacts": true
           },
@@ -125,7 +125,7 @@
           },
           "defaultConfiguration": "production"
         },
-        "serve-original": {
+        "serve": {
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
@@ -135,7 +135,13 @@
               "buildTarget": "test:esbuild:development"
             }
           },
-          "defaultConfiguration": "development",
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular/build:extract-i18n"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
           "options": {
             "port": 4200
           }
